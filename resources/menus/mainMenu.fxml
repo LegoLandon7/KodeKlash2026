@@ -48,7 +48,7 @@
             <Glow level="1.0" />
         </effect>
     </Label>
-    <Button layoutX="373.0" layoutY="303.0" mnemonicParsing="false" onAction="#startGame" prefHeight="113.0" prefWidth="534.0" text="Start">
+    <Button focusTraversable="false" layoutX="373.0" layoutY="303.0" mnemonicParsing="false" onAction="#startGame" prefHeight="113.0" prefWidth="534.0" text="Start">
         <font>
             <Font size="53.0" />
         </font>
@@ -85,7 +85,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
     </Button>
-    <RadioButton fx:id="btnHard" layoutX="958.0" layoutY="384.0" mnemonicParsing="false" text="Hard">
+    <RadioButton fx:id="btnHard" focusTraversable="false" layoutX="958.0" layoutY="384.0" mnemonicParsing="false" text="Hard">
         <textFill>
             <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" radius="0.5402298850574713">
                 <stops>
@@ -125,8 +125,11 @@
       <toggleGroup>
          <ToggleGroup fx:id="difficultyGroup" />
       </toggleGroup>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
     </RadioButton>
-    <RadioButton fx:id="btnMed" layoutX="958.0" layoutY="334.0" mnemonicParsing="false" text="Medium" toggleGroup="$difficultyGroup">
+    <RadioButton fx:id="btnMed" focusTraversable="false" layoutX="958.0" layoutY="334.0" mnemonicParsing="false" text="Medium" toggleGroup="$difficultyGroup">
         <textFill>
             <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" radius="0.5402298850574713">
                 <stops>
@@ -159,8 +162,11 @@
         <effect>
             <DropShadow />
         </effect>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
     </RadioButton>
-    <RadioButton fx:id="btnEasy" layoutX="958.0" layoutY="284.0" mnemonicParsing="false" text="Easy" toggleGroup="$difficultyGroup">
+    <RadioButton fx:id="btnEasy" focusTraversable="false" layoutX="958.0" layoutY="284.0" mnemonicParsing="false" text="Easy" toggleGroup="$difficultyGroup">
         <textFill>
             <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" radius="0.5402298850574713">
                 <stops>
@@ -197,8 +203,11 @@
                 </color>
             </DropShadow>
         </effect>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
     </RadioButton>
-    <Button layoutX="1106.0" layoutY="655.0" mnemonicParsing="false" onAction="#exit" prefHeight="50.0" prefWidth="159.0" text="Exit">
+    <Button focusTraversable="false" layoutX="1106.0" layoutY="655.0" mnemonicParsing="false" onAction="#exit" prefHeight="50.0" prefWidth="159.0" text="Exit">
         <textFill>
             <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" radius="0.5402298850574713">
                 <stops>

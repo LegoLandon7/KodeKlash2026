@@ -21,8 +21,8 @@ public class MainMenuController {
     GameInstance gameInstance = new GameInstance();
 
     // start game button
-    @FXML void startGame(Event e){
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+    @FXML void startGame(){
+        Stage stage = (Stage) btnEasy.getScene().getWindow();
 
         // calculate difficulty
         int difficulty = 0;
@@ -48,14 +48,13 @@ public class MainMenuController {
 
         btnEasy.setSelected(true);
 
-        // escape button exit
+        // key presses
         Platform.runLater(() -> {
             Stage stage = (Stage) btnEasy.getScene().getWindow();
 
             stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-                if (event.getCode() == KeyCode.ESCAPE) {
-                    this.exit();
-                }
+                if (event.getCode() == KeyCode.ESCAPE) exit();
+                if (event.getCode() == KeyCode.ENTER) startGame();
             });
         });
     }

@@ -35,3 +35,9 @@ bin/
 target/
 target
 target/*
+out
+out/
+out/*
+dist/
+dist
+dist/*

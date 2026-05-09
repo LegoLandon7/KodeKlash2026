@@ -2,11 +2,13 @@
 
 ### By Simon and Landon
 
+##### this project is made public on [GitHub](https://github.com/LegoLandon7/KodeKlash2026)
+
 ---
 
 This README file has sources I made or referenced in this project. Comments heavily explain everything else in the project.
 
-###### Note: some AI was used mainly with google AI overview showing obvious bugs or logic. No code here is directly from AI, and it was only used as a tool.
+###### Note: some AI was used mainly with Google AI overview showing obvious bugs, logic, or simple tasks. No code here is directly from AI, and it was only used as a tool.
 
 **Landon worked on:** ray-casting, rendering, entities, player input
 \

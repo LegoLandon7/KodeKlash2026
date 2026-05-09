@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="720" maxWidth="1280" prefHeight="720" prefWidth="1280" style="-fx-background-color: #A26AC4;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menu.MainMenuController">
+    <Label blendMode="MULTIPLY" cache="true" layoutX="384.0" layoutY="21.0" text="PlaceHolder Title" textAlignment="CENTER">
+        <font>
+            <Font name="System Bold Italic" size="73.0" />
+        </font>
+        <textFill>
+            <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" focusDistance="1.0" radius="0.5402298850574713">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.006711409395973154">
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.4963373710918317">
+                        <color>
+                            <Color red="0.5335285663604736" green="0.006000000052154064" blue="0.6000000238418579" />
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="0.27450981736183167" blue="0.43529412150382996" />
+                        </color>
+                    </Stop>
+                </stops>
+            </RadialGradient>
+        </textFill>
+        <effect>
+            <Glow level="1.0" />
+        </effect>
+    </Label>
+    <Button layoutX="373.0" layoutY="303.0" mnemonicParsing="false" onAction="#startGame" prefHeight="113.0" prefWidth="534.0" text="Start">
+        <font>
+            <Font size="53.0" />
+        </font>
+        <textFill>
+            <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" radius="0.5402298850574713">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.006711409395973154">
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.4963373710918317">
+                        <color>
+                            <Color red="0.5335285663604736" green="0.006000000052154064" blue="0.6000000238418579" />
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="0.2750000059604645" blue="0.43421053886413574" />
+                        </color>
+                    </Stop>
+                </stops>
+            </RadialGradient>
+        </textFill>
+        <effect>
+            <DropShadow />
+        </effect>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+    </Button>
+    <RadioButton fx:id="btnHard" layoutX="958.0" layoutY="384.0" mnemonicParsing="false" text="Hard">
+        <textFill>
+            <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" radius="0.5402298850574713">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.006711409395973154">
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.4963373710918317">
+                        <color>
+                            <Color red="0.5335285663604736" green="0.006000000052154064" blue="0.6000000238418579" />
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="0.2750000059604645" blue="0.43421053886413574" />
+                        </color>
+                    </Stop>
+                </stops>
+            </RadialGradient>
+        </textFill>
+        <font>
+            <Font name="System Bold" size="34.0" />
+        </font>
+        <effect>
+            <DropShadow>
+                <color>
+                    <Color red="1.0" />
+                </color>
+            </DropShadow>
+        </effect>
+      <toggleGroup>
+         <ToggleGroup fx:id="difficultyGroup" />
+      </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="btnMed" layoutX="958.0" layoutY="334.0" mnemonicParsing="false" text="Medium" toggleGroup="$difficultyGroup">
+        <textFill>
+            <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" radius="0.5402298850574713">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.006711409395973154">
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.4963373710918317">
+                        <color>
+                            <Color red="0.5335285663604736" green="0.006000000052154064" blue="0.6000000238418579" />
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="0.2750000059604645" blue="0.43421053886413574" />
+                        </color>
+                    </Stop>
+                </stops>
+            </RadialGradient>
+        </textFill>
+        <font>
+            <Font name="System Bold" size="34.0" />
+        </font>
+        <effect>
+            <DropShadow />
+        </effect>
+    </RadioButton>
+    <RadioButton fx:id="btnEasy" layoutX="958.0" layoutY="284.0" mnemonicParsing="false" text="Easy" toggleGroup="$difficultyGroup">
+        <textFill>
+            <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" radius="0.5402298850574713">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.006711409395973154">
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.4963373710918317">
+                        <color>
+                            <Color red="0.5335285663604736" green="0.006000000052154064" blue="0.6000000238418579" />
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="0.2750000059604645" blue="0.43421053886413574" />
+                        </color>
+                    </Stop>
+                </stops>
+            </RadialGradient>
+        </textFill>
+        <font>
+            <Font name="System Bold" size="34.0" />
+        </font>
+        <effect>
+            <DropShadow>
+                <color>
+                    <Color red="1.0" green="1.0" blue="1.0" />
+                </color>
+            </DropShadow>
+        </effect>
+    </RadioButton>
+    <Button layoutX="1106.0" layoutY="655.0" mnemonicParsing="false" onAction="#exit" prefHeight="50.0" prefWidth="159.0" text="Exit">
+        <textFill>
+            <RadialGradient centerX="0.4917127071823204" centerY="0.5402843601895734" radius="0.5402298850574713">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.006711409395973154">
+                        <color>
+                            <Color red="0.5499512553215027" green="0.5499512553215027" blue="0.9736841917037964" />
+                        </color>
+                    </Stop>
+                    <Stop offset="0.4963373710918317">
+                        <color>
+                            <Color red="0.5335285663604736" green="0.006000000052154064" blue="0.6000000238418579" />
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="0.2750000059604645" blue="0.43421053886413574" />
+                        </color>
+                    </Stop>
+                </stops>
+            </RadialGradient>
+        </textFill>
+        <font>
+            <Font size="18.0" />
+        </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+    </Button>
+   <Label layoutX="23.0" layoutY="199.0" prefHeight="96.0" prefWidth="171.0" style="-fx-font-weight: 900;" text="Controls:">
+      <font>
+         <Font size="40.0" />
+      </font>
+   </Label>
+   <Label layoutX="25.0" layoutY="272.0" prefHeight="218.0" prefWidth="308.0" text="W / Up Arrow&#9;    - move forwards&#10;S  /  Down Arrow  - move backwards&#10;&#10;A / D - strafe left / right&#10;&#10;Left Arrow / Right Arrow - rotate camera&#10;&#10;SPACE - shoot&#10;Z          - shange weapon&#10;ESC      - close window">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Label>
+   <Label layoutX="25.0" layoutY="14.0" prefHeight="96.0" prefWidth="171.0" style="-fx-font-weight: 900;" text="Credits:">
+      <font>
+         <Font size="40.0" />
+      </font>
+   </Label>
+   <Label layoutX="25.0" prefHeight="218.0" prefWidth="308.0" text="Landon - core game / math&#10;Simon   - art, main menu, creativity">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Label>
+</AnchorPane>

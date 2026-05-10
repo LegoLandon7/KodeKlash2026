@@ -3,18 +3,47 @@ package Game.Entities;
 import Game.User.Camera;
 
 public class EntityWave {
-    private final Entity[] entities;
+    private Entity[] entities;
+    private final int difficulty;
     private final int[][] map;
 
-    public EntityWave(String filePath, Path path, Camera camera, int[][] map, int count, int difficulty) {
-        entities = new Entity[count * difficulty];
+    public EntityWave(int[][] map, int difficulty) {
+        this.difficulty = difficulty;
+        this.map = map;
+    }
+
+    public void addEntity(Entity entity, int count) {
+        // cache current entities
+        Entity[] entityCache = entities;
+        Entity[] newEntities = new Entity[difficulty * count]; // scale by difficulty
 
         // fill entities array
-        for (int i = 0; i < count * difficulty; i++) {
-            entities[i] = new Entity(0, 0, filePath, path, camera);
+        for (int i = 0; i < count * difficulty; i++)
+            newEntities[i] = new Entity(
+                    entity.getPosX(),
+                    entity.getPosY(),
+                    entity.getFilePath(),
+                    entity.getPath(),
+                    entity.getCamera(),
+                    entity.getGameInstance(),
+                    entity.getDamageMultiplier(),
+                    entity.getEntitySize(),
+                    entity.getEntitySpeed(),
+                    entity.getDamage());
+
+        if (entities == null) {
+            entities = newEntities;
+            return;
         }
 
-        this.map = map;
+        // combine arrays
+        int totalLength = entityCache.length + newEntities.length;
+        Entity[] newEntityCache = new Entity[totalLength];
+
+        System.arraycopy(entityCache, 0, newEntityCache, 0, entityCache.length);
+        System.arraycopy(newEntities, 0, newEntityCache, entityCache.length, newEntities.length);
+
+        entities = newEntityCache;
     }
 
     public void randomize(int limitX, int limitY) {

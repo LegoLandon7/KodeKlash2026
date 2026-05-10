@@ -19,7 +19,6 @@ public class GameLoop {
     private final Player player;
     private final Renderer renderer;
     private final Raycaster raycaster;
-    private final Path path;
 
     private final int maxFps;
 
@@ -28,14 +27,13 @@ public class GameLoop {
     private boolean running = false;
 
     public GameLoop(Window window, Camera camera, Player player,
-                    Renderer renderer, Raycaster raycaster, Path path, EntityWave entityWave, int maxFps) {
+                    Renderer renderer, Raycaster raycaster, EntityWave entityWave, int maxFps) {
 
         this.window = window;
         this.camera = camera;
         this.player = player;
         this.renderer = renderer;
         this.raycaster = raycaster;
-        this.path = path;
         this.entityWave = entityWave;
         this.maxFps = maxFps;
     }

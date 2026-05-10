@@ -3,6 +3,8 @@ package Game.Gameplay;
 import Game.Entities.Entity;
 import Game.Entities.EntityWave;
 import Game.User.Camera;
+import Game.Util.ResourceLoader;
+import Game.Util.VectorMath;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -24,7 +26,7 @@ public class Weapon {
 
     public Weapon(String imagePath, EntityWave entityWave, int[][] map, Camera camera, int damage, float reloadTime, float bulletSpeed, float range) {
         try {
-            this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(imagePath)));
+            this.image = ResourceLoader.loadImage(imagePath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -54,7 +56,7 @@ public class Weapon {
         // normalizes the camera direction
         float camDirX = camera.getDirX();
         float camDirY = camera.getDirY();
-        float length = (float) Math.sqrt(camDirX * camDirX + camDirY * camDirY);
+        float length = VectorMath.length(camDirX, camDirY);
         camDirX /= length;
         camDirY /= length;
 
@@ -79,10 +81,10 @@ public class Weapon {
                 float posX = e.getPosX();
                 float posY = e.getPosY();
 
-                float dist = (float) Math.sqrt(((rayX - posX) * (rayX - posX)) + ((rayY - posY) * (rayY - posY)));
+                float dist = VectorMath.distance(rayX, rayY, posX, posY);
 
                 // check if bullet hit
-                if (dist < Entity.ENTITY_SIZE) {
+                if (dist < e.getEntitySize()) {
                     dealDamage(e); // damage entity
 
                     hit = true;

@@ -1,7 +1,10 @@
 package Game.Entities;
 
+import Game.Instance.GameInstance;
 import Game.User.Camera;
 import Game.User.Player;
+import Game.Util.ResourceLoader;
+import Game.Util.VectorMath;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,31 +17,45 @@ public class Entity {
     private final int width;
     private final int height;
     private final int[] pixels;
+    private final String filePath;
 
     private final Path path;
     private final Camera camera;
+    private final GameInstance gameInstance;
 
     private int health;
+    private final float damageMultiplier;
+    private final float entitySize;
+    private final float entitySpeed;
+    private final int damage;
 
-    public static final float ENTITY_SIZE = 0.5f;
+    private long damageCooldown;
+
     public static final float PLAYER_SIZE = 0.75f;
-    public static final float ENTITY_SPEED = 0.033f;
     public static final int RANDOM_CHANCE = 100;
+    public static final long damageTime = 1000;
 
-    public Entity(float x, float y, String filePath, Path path, Camera camera) {
+    public Entity(float x, float y, String filePath, Path path, Camera camera, GameInstance gameInstance, float damageMultiplier, float entitySize, float entitySpeed, int damage) {
         this.x = x;
         this.y = y;
 
         this.path = path;
         this.camera = camera;
+        this.filePath = filePath;
+        this.gameInstance = gameInstance;
 
         health = 100;
 
+        this.damageMultiplier = damageMultiplier;
+        this.entitySize = entitySize;
+        this.entitySpeed = entitySpeed;
+        this.damage = damage;
+
+        damageCooldown = System.currentTimeMillis();
+
         try {
             // read image path
-            BufferedImage img = ImageIO.read(
-                    Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filePath))
-            );
+            BufferedImage img = ResourceLoader.loadImage(filePath);
 
             // get image data
             BufferedImage buf = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -87,8 +104,8 @@ public class Entity {
             float distX = (float)Math.sqrt(((newX - posX) * (newX - posX)) + ((y - posY) * (y - posY)));
             float distY = (float)Math.sqrt(((x - posX) * (x - posX)) + ((newY - posY) * (newY - posY)));
 
-            if (distX < ENTITY_SIZE) blockX = true;
-            if (distY < ENTITY_SIZE) blockY = true;
+            if (distX < entitySize) blockX = true;
+            if (distY < entitySize) blockY = true;
         }
 
         // check camera collision
@@ -115,6 +132,15 @@ public class Entity {
         // apply movement
         if(!blockX) x = newX;
         if(!blockY) y = newY;
+
+        // deal damage
+        float distanceToPlayer = VectorMath.distance(camX, camY, x, y);
+        if (distanceToPlayer < PLAYER_SIZE + entitySize) {
+            long now = System.currentTimeMillis();
+            if (now - damageCooldown < damageTime) return; // cooldown
+            gameInstance.takeDamage(damage);
+            damageCooldown = now;
+        }
     }
 
     public void doPathFinding(Entity[] collisionEntities) {
@@ -132,7 +158,7 @@ public class Entity {
         float rayDirY = camY - y;
         
         // normalize angle
-        float rayLength = (float)Math.sqrt(rayDirX * rayDirX + rayDirY * rayDirY);
+        float rayLength = VectorMath.length(rayDirX, rayDirY);
         rayDirX /= rayLength;
         rayDirY /= rayLength;
 
@@ -164,7 +190,7 @@ public class Entity {
 
         // move entity directly
         if(!hit) {
-            moveTo(camX, camY, ENTITY_SPEED, collisionEntities);
+            moveTo(camX, camY, entitySpeed, collisionEntities);
             return;
         }
 
@@ -173,20 +199,29 @@ public class Entity {
         Path.pos nextPos = path.getNextTile((int) x, (int) y);
 
         // move entity
-        if(nextPos != null) moveTo(nextPos.x + 0.5f, nextPos.y + 0.5f, ENTITY_SPEED, collisionEntities);
+        if(nextPos != null) moveTo(nextPos.x + 0.5f, nextPos.y + 0.5f, entitySpeed, collisionEntities);
     }
 
     public void doDamage(int damage, EntityWave entityWave) {
-        health -= damage;
+        health -= (int) (damage * damageMultiplier);
 
         // entity dead
         if(health <= 0) entityWave.remove(this);
     }
 
     // getters
-    public float getPosX() { return x; }
-    public float getPosY() { return y; }
-    public int getWidth() { return width; }
-    public int getHeight() { return height; }
+    public float getPosX()   { return x; }
+    public float getPosY()   { return y; }
+    public int getWidth()    { return width; }
+    public int getHeight()   { return height; }
     public int[] getPixels() { return pixels; }
+    public int getHealth()   { return health; }
+    public Camera getCamera()          {return camera;}
+    public float getEntitySize()       {return entitySize;}
+    public float getDamageMultiplier() {return damageMultiplier;}
+    public float getEntitySpeed()      {return entitySpeed;}
+    public Path getPath()              {return path;}
+    public String getFilePath()        {return filePath;}
+    public int getDamage()             {return damage;}
+    public GameInstance getGameInstance()    {return gameInstance;}
 }

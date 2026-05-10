@@ -12,6 +12,10 @@ import Game.User.Player;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 public class GameInstance {
     // game settings
     private final String windowTitle;
@@ -27,6 +31,7 @@ public class GameInstance {
     private GameLoop gameLoop;
 
     private int difficulty;
+    private int health;
 
     // default settings
     public GameInstance() {
@@ -40,12 +45,12 @@ public class GameInstance {
         this.maxFps = 120;
 
         this.difficulty = 1;
+        health = 100;
     }
 
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
-
     public void setStage(Stage stage) {
         this.menuStage = stage;
     }
@@ -60,20 +65,29 @@ public class GameInstance {
 
         // initialize entities
         Path path = new Path(Maps.map5);
-        EntityWave entityWave = new EntityWave("entities/glorp3.png", path, camera, Maps.map5, 500, difficulty);
+
+        Entity testEntity2 = new Entity(0, 0, "entities/glorp3.png", path, camera, this, 0.1f, 1f, 0.001f, 25);
+        Entity testEntity = new Entity(0, 0, "entities/glorp3.png", path, camera, this,0.5f, 0.5f, 0.02f, 2);
+
+        EntityWave entityWave = new EntityWave(Maps.map5, difficulty);
+
+        entityWave.addEntity(testEntity2, 10);
+        entityWave.addEntity(testEntity, 15);
+
         entityWave.randomize(Maps.map5.length, Maps.map5[0].length);
 
-        // initialize player
-        Weapon weapon = new Weapon("entities/glorp3.png", entityWave, Maps.map5, camera, 100, 0.1f, 0.5f, 100.0f);
+        // initialize player and weapons
+        Weapon weapon = new Weapon("entities/glorp3.png", entityWave, Maps.map5, camera, 2, 0.1f, 0.5f, 100.0f);
+
         Player player = new Player(window, camera, weapon, Maps.map5, this);
 
         // initialize raycaster & renderer
         Raycaster raycaster = new Raycaster(windowWidth, windowHeight, Maps.map5, fov, resolution);
-        Renderer renderer = new Renderer(window, raycaster, windowWidth, windowHeight, resolution);
+        Renderer renderer = new Renderer(window, raycaster, this, windowWidth, windowHeight, resolution);
         renderer.setEntityWave(entityWave);
 
         // initialize game loop
-        gameLoop = new GameLoop(window, camera, player, renderer, raycaster, path, entityWave, maxFps);
+        gameLoop = new GameLoop(window, camera, player, renderer, raycaster, entityWave, maxFps);
         Thread gameThread = new Thread(() -> gameLoop.start());
         gameThread.start();
     }
@@ -81,5 +95,27 @@ public class GameInstance {
     public void stop() {
         gameLoop.stop();
         Platform.runLater(menuStage::show);
+    }
+
+    public void takeDamage(int damage) {
+        health -= damage;
+        if (health <= 0) stop();
+    }
+
+    public void renderHud(Window window) {
+        int barWidth = windowWidth - 40;
+        int barHeight = 16;
+        int barX = 20;
+        int barY = windowHeight - 60;
+
+        float pct = Math.max(0, health / 100f);
+        int fillWidth = (int)(barWidth * pct);
+
+        for (int x = 0; x < barWidth; x++) {
+            for (int y = 0; y < barHeight; y++) {
+                int color = (x < fillWidth) ? 0xFF22CC22 : 0xFF880000;
+                window.setPixel(barX + x, barY + y, color);
+            }
+        }
     }
 }

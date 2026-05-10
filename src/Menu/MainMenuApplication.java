@@ -1,5 +1,6 @@
 package Menu;
 
+import Game.Util.ResourceLoader;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,7 @@ import java.io.IOException;
 public class MainMenuApplication extends Application {
     @Override public void start(Stage stage) throws IOException {
         Platform.setImplicitExit(false);
-        FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("/menus/mainMenu.fxml"));
+        FXMLLoader fxmlLoader = ResourceLoader.loadFXML("/menus/mainMenu.fxml");
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setTitle("Placeholder");
         stage.setScene(scene);

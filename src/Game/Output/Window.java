@@ -68,6 +68,15 @@ public class Window extends Canvas implements KeyListener {
         pixels[y * width + x] = color;
     }
 
+    public void fillRows(int start, int end, int color) {
+        Arrays.fill(pixels, start * width, end * width, color);
+    }
+
+    public void fillRow(int x, int y, int length, int color) {
+        int start = y * width + x;
+        Arrays.fill(pixels, start, start + length, color);
+    }
+
     public void showFps(String fps) {
         this.currentFps = fps;
     }

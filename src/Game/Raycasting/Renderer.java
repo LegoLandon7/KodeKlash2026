@@ -86,20 +86,8 @@ public class Renderer {
 
     private void renderBackground(int ceiling, int floor) {
         int half = height / 2;
-
-        // render ceiling
-        for (int y = 0; y < half; y++) {
-            for (int x = 0; x < width; x++) {
-                window.setPixel(x, y, ceiling);
-            }
-        }
-
-        // render floor
-        for (int y = half; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                window.setPixel(x, y, floor);
-            }
-        }
+        window.fillRows(0, half, ceiling);
+        window.fillRows(half, height, floor);
     }
 
     private void renderEntity(Entity e, RayData[] zBuffer) {

@@ -7,6 +7,7 @@ public class EntityWave {
     private Entity[] entities;
     private final int difficulty;
     private final int[][] map;
+    private float[] distances;
 
     public EntityWave(int[][] map, int difficulty) {
         this.difficulty = difficulty;
@@ -86,7 +87,7 @@ public class EntityWave {
     }
 
     public void sort(float camX, float camY) {
-        float[] distances = new float[entities.length];
+        distances = new float[entities.length];
 
         // find distances to each entity
         for (int i = 0; i < entities.length; i++) {
@@ -121,6 +122,23 @@ public class EntityWave {
     }
 
     public void doLogic(float delta) {
+        // calculate pathing for one entity
+        Entity first = null;
+        for (Entity entity : entities) {
+            if (entity != null) {
+                first = entity;
+                break;
+            }
+        }
+
+        if (first == null) return;
+
+        Camera camera = first.getCamera();
+        int camX = (int) camera.getCamX();
+        int camY = (int) camera.getCamY();
+        first.getPath().getPathing(camX, camY);
+
+        // move all entities
         for (Entity entity : entities) {
             if (entity == null) continue;
             entity.doPathFinding(entities, delta);

@@ -28,7 +28,7 @@ public class GameLoop {
 
     private boolean running = false;
 
-    public static int weaponScale = 16;
+    public static int weaponScale = 12;
 
     public GameLoop(Window window, Camera camera, Player player,
                     Renderer renderer, Raycaster raycaster, EntityWave entityWave, int maxFps) {

@@ -49,10 +49,10 @@ public class GameInstance {
 
         this.windowWidth = 1280;
         this.windowHeight = 720;
-        this.resolution = 1;
+        this.resolution = 8;
         this.fov = (float) Math.toRadians(90);
 
-        this.maxFps = 120;
+        this.maxFps = 60;
         this.difficulty = 4;
 
         currentWeapon = 0;
@@ -83,9 +83,9 @@ public class GameInstance {
         EntityWave entityWave = new EntityWave(Maps.mainMap, difficulty);
 
         entityWave.addEntity(entities[0], 3);
-        entityWave.addEntity(entities[1], 5);
+        //entityWave.addEntity(entities[1], 5);
         // entityWave.addEntity(entities[2], 1);
-        entityWave.addEntity(entities[3], 10);
+        // entityWave.addEntity(entities[3], 10);
 
         entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
 
@@ -119,7 +119,7 @@ public class GameInstance {
 
     public void changeWeapon() {
         currentWeapon++;
-        if (currentWeapon > maxWeapon) currentWeapon = 0;
+        if (currentWeapon == maxWeapon) currentWeapon = 0;
         player.setWeapon(weapons[currentWeapon]);
     }
 

@@ -13,6 +13,8 @@ public class Raycaster {
     private float dirX, dirY;
     private float planeX, planeY;
 
+    private RayData[] zBuffer;
+
     public static final float MAX_DIST = 100f;
 
     public Raycaster(int width, int height, int[][] map, float fov, int res) {
@@ -27,6 +29,10 @@ public class Raycaster {
         dirY = 0;
         planeX = 0.66f;
         planeY = 0;
+        int rayCount = width / res;
+        zBuffer = new RayData[rayCount];
+        for (int i = 0; i < rayCount; i++)
+            zBuffer[i] = new RayData();
     }
 
     public void setPlayer(float x, float y, float dx, float dy) {
@@ -44,14 +50,10 @@ public class Raycaster {
     }
 
     public RayData[] cast() {
-        // get ray-count based on resolution
-        int rayCount = width / res;
-        RayData[] z = new RayData[rayCount];
-
         // loop through every ray
-        for (int i = 0; i < rayCount; i++) {
+        for (int i = 0; i < zBuffer.length; i++) {
 
-            float cameraX = 2f * i / (float)(rayCount - 1) - 1f;
+            float cameraX = 2f * i / (float)(zBuffer.length - 1) - 1f;
 
             // initialize the starting ray position
             float rayX = dirX + planeX * cameraX;
@@ -114,13 +116,11 @@ public class Raycaster {
             }
 
             // put data into an array to pass to renderer
-            RayData hitData = new RayData();
-            hitData.setDist(hit ? Math.max(0.01f, dist) : 50f);
-            hitData.setSide(side);
-            z[i] = hitData;
+            zBuffer[i].setDist(hit ? Math.max(0.01f, dist) : 50f);
+            zBuffer[i].setSide(side);
         }
 
-        return z;
+        return zBuffer;
     }
 
     // getters

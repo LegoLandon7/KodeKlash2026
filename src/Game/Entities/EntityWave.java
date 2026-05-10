@@ -118,10 +118,10 @@ public class EntityWave {
         }
     }
 
-    public void doLogic() {
+    public void doLogic(float delta) {
         for (Entity entity : entities) {
             if (entity == null) continue;
-            entity.doPathFinding(entities);
+            entity.doPathFinding(entities, delta);
         }
     }
 

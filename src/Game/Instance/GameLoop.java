@@ -63,7 +63,7 @@ public class GameLoop {
             //window.addImage(testImage);
 
             // move entities
-            entityWave.doLogic();
+            entityWave.doLogic(delta);
 
             // do ray-casting
             raycaster.setPlayer(
@@ -76,11 +76,11 @@ public class GameLoop {
             renderer.render(zBuffer);
 
             // get frame times
-            long targetFrameTime = 1000 / maxFps;
-            long elapsedTime = (System.nanoTime() - now) / 1_000_000;
+            long targetFrameTime = 1_000_000_000 / maxFps;
+            long elapsedTime = System.nanoTime() - now;
 
             // amount of time to sleep (subtract time already taken during loop)
-            long sleepTime = targetFrameTime - elapsedTime;
+            long sleepTime = (targetFrameTime - elapsedTime) / 1_000_000;
 
             if (sleepTime > 0) { // don't sleep if loop took longer than target frame time
                 try {

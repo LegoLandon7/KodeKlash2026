@@ -65,27 +65,27 @@ public class GameInstance {
         Camera camera = new Camera(1.5f, 1.5f);
 
         // initialize entities
-        Path path = new Path(Maps.map5);
+        Path path = new Path(Maps.mainMap);
 
         Entity testEntity2 = new Entity(0, 0, "entities/glorp3.png", path, camera, this, 0.25f, 1f, 0.005f, 5);
         Entity testEntity = new Entity(0, 0, "entities/glorp3.png", path, camera, this,0.75f, 0.5f, 0.02f, 1);
         Entity tank = new Entity(0, 0, "entities/glorp3.png", path, camera, this,0.01f, 0.5f, 0.025f, 2);
 
-        EntityWave entityWave = new EntityWave(Maps.map5, difficulty);
+        EntityWave entityWave = new EntityWave(Maps.mainMap, difficulty);
 
         entityWave.addEntity(testEntity2, 3);
         entityWave.addEntity(testEntity, 5);
         entityWave.addEntity(tank, 1);
 
-        entityWave.randomize(Maps.map5.length, Maps.map5[0].length);
+        entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
 
         // initialize player and weapons
-        Weapon weapon = new Weapon("entities/glorp3.png", entityWave, Maps.map5, camera, 10, 5, 0.5f, 100.0f);
+        Weapon weapon = new Weapon("entities/glorp3.png", entityWave, Maps.mainMap, camera, 10, 5, 0.5f, 100.0f);
 
-        Player player = new Player(window, camera, weapon, Maps.map5, this);
+        Player player = new Player(window, camera, weapon, Maps.mainMap, this);
 
         // initialize raycaster & renderer
-        Raycaster raycaster = new Raycaster(windowWidth, windowHeight, Maps.map5, fov, resolution);
+        Raycaster raycaster = new Raycaster(windowWidth, windowHeight, Maps.mainMap, fov, resolution);
         Renderer renderer = new Renderer(window, raycaster, this, windowWidth, windowHeight, resolution);
         renderer.setEntityWave(entityWave);
 

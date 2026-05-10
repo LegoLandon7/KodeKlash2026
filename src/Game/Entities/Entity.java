@@ -80,15 +80,15 @@ public class Entity {
         this.y = y;
     }
 
-    public void moveTo(float tx, float ty, float step, Entity[] collision) {
+    public void moveTo(float tx, float ty, float step, Entity[] collision, float delta) {
         float dx = tx - x;
         float dy = ty - y;
 
         float dist = (float)Math.sqrt(dx * dx + dy * dy);
         if (dist < 0.01f) return;
 
-        float newX = x + dx / dist * step;
-        float newY = y + dy / dist * step;
+        float newX = x + dx / dist * step * delta;
+        float newY = y + dy / dist * step * delta;
 
         boolean blockX = false;
         boolean blockY = false;
@@ -144,7 +144,7 @@ public class Entity {
         }
     }
 
-    public void doPathFinding(Entity[] collisionEntities) {
+    public void doPathFinding(Entity[] collisionEntities, float delta) {
         float camX = camera.getCamX();
         float camY = camera.getCamY();
 
@@ -191,7 +191,7 @@ public class Entity {
 
         // move entity directly
         if(!hit) {
-            moveTo(camX, camY, entitySpeed, collisionEntities);
+            moveTo(camX, camY, entitySpeed, collisionEntities, delta);
             return;
         }
 
@@ -200,7 +200,7 @@ public class Entity {
         Path.pos nextPos = path.getNextTile((int) x, (int) y);
 
         // move entity
-        if(nextPos != null) moveTo(nextPos.x + 0.5f, nextPos.y + 0.5f, entitySpeed, collisionEntities);
+        if(nextPos != null) moveTo(nextPos.x + 0.5f, nextPos.y + 0.5f, entitySpeed, collisionEntities, delta);
     }
 
     public void doDamage(int damage, EntityWave entityWave) {

@@ -4,8 +4,10 @@ import Game.Output.Window;
 import Game.Raycasting.RayData;
 
 public class HealthBar {
+    public static int MAX_HEALTH = 1000;
+
     public static void render(int health, int x, int y, int width, int height, Window window) {
-        float percentFilled = Math.max(0, health / 100f);
+        float percentFilled = Math.max(0, health / (float) MAX_HEALTH);
         int fillWidth = (int)(width * percentFilled);
 
         for (int px = 0; px < width; px++) {
@@ -17,7 +19,7 @@ public class HealthBar {
     }
 
     public static void render(int health, int x, int y, int width, int height, Window window, int res, RayData[] zBuffer, float camZ) {
-        float percentFilled = Math.max(0, health / 100f);
+        float percentFilled = Math.max(0, health / (float) MAX_HEALTH);
         int fillWidth = (int)(width * percentFilled);
 
         for (int px = 0; px < width; px++) {

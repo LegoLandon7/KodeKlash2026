@@ -3,6 +3,7 @@ package Game.Entities;
 import Game.Instance.GameInstance;
 import Game.User.Camera;
 import Game.User.Player;
+import Game.Util.HealthBar;
 import Game.Util.ResourceLoader;
 import Game.Util.VectorMath;
 
@@ -44,7 +45,7 @@ public class Entity {
         this.filePath = filePath;
         this.gameInstance = gameInstance;
 
-        health = 100;
+        health = HealthBar.MAX_HEALTH;
 
         this.damageMultiplier = damageMultiplier;
         this.entitySize = entitySize;

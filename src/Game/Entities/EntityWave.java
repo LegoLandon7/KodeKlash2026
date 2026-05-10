@@ -70,14 +70,14 @@ public class EntityWave {
         // too close to player
         float camX = spawn.getCamera().getCamX();
         float camY = spawn.getCamera().getCamY();
-        if (VectorMath.distance(x, y, camX, camY) < 3f) return true;
+        if (VectorMath.distance(x, y, camX, camY) < Entity.PLAYER_SIZE) return true;
 
         // too close to another entity
         for (Entity other : entities) {
             // checks
             if (other == null) continue;
             if (other == spawn) continue;
-            if (VectorMath.distance(x, y, other.getPosX(), other.getPosY()) < 1f) return true;
+            if (VectorMath.distance(x, y, other.getPosX(), other.getPosY()) < other.getEntitySize()) return true;
         }
 
         return false;

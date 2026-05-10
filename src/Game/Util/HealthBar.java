@@ -4,7 +4,7 @@ import Game.Output.Window;
 import Game.Raycasting.RayData;
 
 public class HealthBar {
-    public static int MAX_HEALTH = 1000;
+    public static int MAX_HEALTH = 100;
     public static int HEAL_COLOR = 0x00ff00;
     public static int DAMAGE_COLOR = 0xff0000;
 

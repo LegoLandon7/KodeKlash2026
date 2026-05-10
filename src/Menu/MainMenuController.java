@@ -27,8 +27,8 @@ public class MainMenuController {
         // calculate difficulty
         int difficulty = 0;
         if (difficultyGroup.getSelectedToggle() == btnEasy) difficulty = 1;
-        if (difficultyGroup.getSelectedToggle() == btnMed)  difficulty = 3;
-        if (difficultyGroup.getSelectedToggle() == btnHard) difficulty = 5;
+        if (difficultyGroup.getSelectedToggle() == btnMed)  difficulty = 5;
+        if (difficultyGroup.getSelectedToggle() == btnHard) difficulty = 10;
 
         // start game
         gameInstance.setStage(stage);

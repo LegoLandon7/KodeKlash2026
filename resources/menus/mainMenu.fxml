@@ -246,7 +246,7 @@
          <Font size="40.0" />
       </font>
    </Label>
-   <Label layoutX="25.0" layoutY="272.0" prefHeight="218.0" prefWidth="308.0" text="W / Up Arrow&#9;    - move forwards&#10;S  /  Down Arrow  - move backwards&#10;&#10;A / D - strafe left / right&#10;&#10;Left Arrow / Right Arrow - rotate camera&#10;&#10;SPACE - shoot&#10;Z          - shange weapon&#10;ESC      - close window">
+   <Label layoutX="25.0" layoutY="272.0" prefHeight="218.0" prefWidth="308.0" text="W / Up Arrow&#9;       - move forwards&#10;S  /  Down Arrow  - move backwards&#10;&#10;A / D - strafe left / right&#10;&#10;Left Arrow / Right Arrow - rotate camera&#10;&#10;SPACE - shoot&#10;Z          - shange weapon&#10;ESC      - close window">
       <font>
          <Font name="System Bold" size="14.0" />
       </font>

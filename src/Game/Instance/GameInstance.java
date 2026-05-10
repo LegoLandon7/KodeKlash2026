@@ -49,11 +49,11 @@ public class GameInstance {
 
         this.windowWidth = 1280;
         this.windowHeight = 720;
-        this.resolution = 8;
+        this.resolution = 1;
         this.fov = (float) Math.toRadians(90);
 
-        this.maxFps = 60;
-        this.difficulty = 4;
+        this.maxFps = 120;
+        this.difficulty = 1;
 
         currentWeapon = 0;
     }

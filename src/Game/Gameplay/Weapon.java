@@ -29,18 +29,18 @@ public class Weapon {
             this.image = ResourceLoader.loadImage(imagePath);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } finally {
-            this.damage = damage;
-            this.reloadTime = reloadTime;
-            this.bulletSpeed = bulletSpeed;
-            this.range = range;
-
-            this.entityWave = entityWave;
-            this.map = map;
-            this.camera = camera;
-
-            cooldown = System.currentTimeMillis();
         }
+
+        this.damage = damage;
+        this.reloadTime = reloadTime;
+        this.bulletSpeed = bulletSpeed;
+        this.range = range;
+
+        this.entityWave = entityWave;
+        this.map = map;
+        this.camera = camera;
+
+        cooldown = System.currentTimeMillis();
     }
 
     public void fire() {
@@ -107,7 +107,6 @@ public class Weapon {
 
     // setters
     public void setEntityWave(EntityWave entityWave) {this.entityWave = entityWave;}
-
 
     // getters
     public BufferedImage getImage() {return image;}

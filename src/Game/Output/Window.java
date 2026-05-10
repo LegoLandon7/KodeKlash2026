@@ -103,9 +103,7 @@ public class Window extends Canvas implements KeyListener {
         Arrays.fill(hudImages, null);
 
         // render fps
-        g.setFont(font);
-        g.setColor(Color.LIGHT_GRAY);
-        g.drawString(currentFps, 20, height - 30);
+        frame.setTitle(title + " - " + currentFps);
 
         g.dispose();
 

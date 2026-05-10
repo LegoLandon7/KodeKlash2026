@@ -12,6 +12,8 @@ import Game.Raycasting.Raycaster;
 import Game.Raycasting.Renderer;
 import Game.Output.Window;
 
+import java.awt.image.BufferedImage;
+
 public class GameLoop {
 
     private final Window window;
@@ -25,6 +27,8 @@ public class GameLoop {
     private final EntityWave entityWave;
 
     private boolean running = false;
+
+    public static int weaponScale = 16;
 
     public GameLoop(Window window, Camera camera, Player player,
                     Renderer renderer, Raycaster raycaster, EntityWave entityWave, int maxFps) {
@@ -60,7 +64,17 @@ public class GameLoop {
 
             // clear window
             window.clear(0x000000);
-            //window.addImage(testImage);
+
+            // draw weapon
+            BufferedImage weaponImage = player.getWeapon().getImage();
+            int scaledWidth  = weaponImage.getWidth()  * weaponScale;
+            int scaledHeight = weaponImage.getHeight() * weaponScale;
+
+            ScreenImage image = new ScreenImage(weaponImage,
+                    window.getWidth() / 2 - scaledWidth  / 2,
+                    window.getHeight() - scaledHeight,
+                    scaledWidth, scaledHeight);
+            window.addImage(image);
 
             // move entities
             entityWave.doLogic(delta);

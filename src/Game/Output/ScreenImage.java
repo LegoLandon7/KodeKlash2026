@@ -2,6 +2,7 @@ package Game.Output;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -19,12 +20,20 @@ public class ScreenImage {
             this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filePath)));
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } finally {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
         }
+
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    public ScreenImage(BufferedImage image, int x, int y, int width, int height) {
+        this.image = image;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
     // getters

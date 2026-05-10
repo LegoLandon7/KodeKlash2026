@@ -27,16 +27,16 @@ public class Entity {
     private int health;
     private final float damageMultiplier;
     private final float entitySize;
+    private final float playerSize;
     private final float entitySpeed;
     private final int damage;
 
     private long damageCooldown;
 
-    public static final float PLAYER_SIZE = 0.75f;
     public static final int RANDOM_CHANCE = 100;
     public static final long damageTime = 1000;
 
-    public Entity(float x, float y, String filePath, Path path, Camera camera, GameInstance gameInstance, float damageMultiplier, float entitySize, float entitySpeed, int damage) {
+    public Entity(float x, float y, String filePath, Path path, Camera camera, GameInstance gameInstance, float damageMultiplier, float entitySize, float playerSize, float entitySpeed, int damage) {
         this.x = x;
         this.y = y;
 
@@ -49,6 +49,7 @@ public class Entity {
 
         this.damageMultiplier = damageMultiplier;
         this.entitySize = entitySize;
+        this.playerSize = playerSize;
         this.entitySpeed = entitySpeed;
         this.damage = damage;
 
@@ -116,8 +117,8 @@ public class Entity {
         float distX = (float)Math.sqrt(((newX - camX) * (newX - camX)) + ((y - camY) * (y - camY)));
         float distY = (float)Math.sqrt(((x - camX) * (x - camX)) + ((newY - camY) * (newY - camY)));
 
-        if (distX < PLAYER_SIZE) blockX = true;
-        if (distY < PLAYER_SIZE) blockY = true;
+        if (distX < playerSize) blockX = true;
+        if (distY < playerSize) blockY = true;
 
         // check wall collision
         int tileX = (int)Math.floor(newX);
@@ -136,7 +137,7 @@ public class Entity {
 
         // deal damage
         float distanceToPlayer = VectorMath.distance(camX, camY, x, y);
-        if (distanceToPlayer < PLAYER_SIZE + entitySize) {
+        if (distanceToPlayer < playerSize + entitySize) {
             long now = System.currentTimeMillis();
             if (now - damageCooldown < damageTime) return; // cooldown
             gameInstance.takeDamage(damage);
@@ -225,4 +226,5 @@ public class Entity {
     public String getFilePath()        {return filePath;}
     public int getDamage()             {return damage;}
     public GameInstance getGameInstance()    {return gameInstance;}
+    public float getPlayerSize() {return playerSize;}
 }

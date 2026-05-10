@@ -1,0 +1,6 @@
+# structure is String imagePath, int damage, long reloadTime, float bulletSpeed, float range
+
+entities/glorp3.png, 5, 1000, 0.5f, 20.0f
+entities/glorp3.png, 25, 2500, 0.5f, 10.0f
+entities/glorp3.png, 1, 250, 0.5f, 50.0f
+entities/glorp3.png, 3, 250, 0.5f, 2.0f

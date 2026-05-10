@@ -29,6 +29,7 @@ public class EntityWave {
                     entity.getGameInstance(),
                     entity.getDamageMultiplier(),
                     entity.getEntitySize(),
+                    entity.getPlayerSize(),
                     entity.getEntitySpeed(),
                     entity.getDamage());
 
@@ -64,13 +65,14 @@ public class EntityWave {
     }
 
     private boolean isBadSpawn(float x, float y, Entity spawn) {
-        // inside wall
+        // checks
+        if ((int) x < 0 || (int) x >= map.length || (int) y < 0 || (int) y >= map[0].length) return true;
         if (map[(int) x][(int) y] > 0) return true;
 
         // too close to player
         float camX = spawn.getCamera().getCamX();
         float camY = spawn.getCamera().getCamY();
-        if (VectorMath.distance(x, y, camX, camY) < Entity.PLAYER_SIZE) return true;
+        if (VectorMath.distance(x, y, camX, camY) < spawn.getPlayerSize()) return true;
 
         // too close to another entity
         for (Entity other : entities) {

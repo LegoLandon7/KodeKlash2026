@@ -137,5 +137,5 @@ public class Maps {
     };
 
     // main map
-    public static int[][] mainMap = map5;
+    public static int[][] mainMap = map4;
 }

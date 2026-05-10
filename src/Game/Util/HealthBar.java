@@ -5,6 +5,8 @@ import Game.Raycasting.RayData;
 
 public class HealthBar {
     public static int MAX_HEALTH = 1000;
+    public static int HEAL_COLOR = 0xff22cc22;
+    public static int DAMAGE_COLOR = 0xff880000;
 
     public static void render(int health, int x, int y, int width, int height, Window window) {
         float percentFilled = Math.max(0, health / (float) MAX_HEALTH);
@@ -12,7 +14,7 @@ public class HealthBar {
 
         for (int px = 0; px < width; px++) {
             for (int py = 0; py < height; py++) {
-                int color = (px < fillWidth) ? 0xFF22CC22 : 0xFF880000;
+                int color = (px < fillWidth) ? HEAL_COLOR : DAMAGE_COLOR;
                 window.setPixel(px + x, py + y, color);
             }
         }
@@ -28,7 +30,7 @@ public class HealthBar {
                 if (rayIdx < 0 || rayIdx >= zBuffer.length) continue;
                 if (camZ >= zBuffer[rayIdx].getDist()) continue;
 
-                int color = (px < fillWidth) ? 0xFF22CC22 : 0xFF880000;
+                int color = (px < fillWidth) ? HEAL_COLOR : DAMAGE_COLOR;
                 window.setPixel(px + x, py + y, color);
             }
         }

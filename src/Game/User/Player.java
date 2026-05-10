@@ -14,9 +14,11 @@ public class Player {
 
     private final Window window;
     private final Camera camera;
-    private final Weapon weapon;
+    private Weapon weapon;
     private final int[][] map;
     private final GameInstance gameInstance;
+
+    private boolean weaponChanged;
 
     public static final float playerSize = 0.1f;
 
@@ -26,6 +28,8 @@ public class Player {
         this.weapon = weapon;
         this.map = map;
         this.gameInstance = gameInstance;
+
+        weaponChanged = false;
     }
 
     public void doPlayerInput(double delta) {
@@ -59,6 +63,13 @@ public class Player {
 
         if (keys.contains(KeyEvent.VK_ESCAPE)) {
             gameInstance.stop();
+        }
+
+        if (keys.contains(KeyEvent.VK_Z)) {
+            if (!weaponChanged) gameInstance.changeWeapon();
+            weaponChanged = true;
+        } else {
+            if (weaponChanged) weaponChanged = false;
         }
 
         // initial starting position
@@ -97,15 +108,16 @@ public class Player {
                 int ty = (int) Math.floor(camera.getCamY() + dy);
 
                 // check if there is a tile there or out of bounds
-                if (out(tx, ty) || map[tx][ty] > 0)
+                if (tx < 0 || ty < 0 || tx >= map.length || ty >= map[0].length || map[tx][ty] > 0)
                     return true;
             }
         }
         return false;
     }
 
-    private boolean out(int x, int y) {
-        // out of bounds
-        return x < 0 || y < 0 || x >= map.length || y >= map[0].length;
-    }
+    // setters
+    public void setWeapon(Weapon weapon) {this.weapon = weapon;}
+
+    // getters
+    public Weapon getWeapon() {return weapon;}
 }

@@ -10,12 +10,14 @@ import Game.Raycasting.*;
 import Game.Output.*;
 import Game.User.Player;
 import Game.Util.HealthBar;
+import Game.Util.ResourceLoader;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class GameInstance {
     // game settings
@@ -34,6 +36,13 @@ public class GameInstance {
     private int difficulty;
     private int health;
 
+    private int currentWeapon;
+    private int maxWeapon;
+
+    Player player;
+    Entity[] entities;
+    Weapon[] weapons;
+
     // default settings
     public GameInstance() {
         this.windowTitle =  "Placeholder";
@@ -44,9 +53,9 @@ public class GameInstance {
         this.fov = (float) Math.toRadians(90);
 
         this.maxFps = 120;
-
         this.difficulty = 4;
-        health = HealthBar.MAX_HEALTH;
+
+        currentWeapon = 0;
     }
 
     public void setDifficulty(int difficulty) {
@@ -57,6 +66,8 @@ public class GameInstance {
     }
 
     public void start() {
+        health = HealthBar.MAX_HEALTH;
+
         // initialize window
         Window window = new Window(windowTitle, windowWidth, windowHeight);
         window.clear(0x000000);
@@ -67,22 +78,23 @@ public class GameInstance {
         // initialize entities
         Path path = new Path(Maps.mainMap);
 
-        Entity testEntity2 = new Entity(0, 0, "entities/glorp3.png", path, camera, this, 0.25f, 1f, 0.005f, 5);
-        Entity testEntity = new Entity(0, 0, "entities/glorp3.png", path, camera, this,0.75f, 0.5f, 0.02f, 1);
-        Entity tank = new Entity(0, 0, "entities/glorp3.png", path, camera, this,0.01f, 0.5f, 0.025f, 2);
+        entities = ResourceLoader.loadEntities("/data/entities.txt", path, camera, this);
 
         EntityWave entityWave = new EntityWave(Maps.mainMap, difficulty);
 
-        entityWave.addEntity(testEntity2, 3);
-        entityWave.addEntity(testEntity, 5);
-        entityWave.addEntity(tank, 1);
+        entityWave.addEntity(entities[0], 3);
+        entityWave.addEntity(entities[1], 5);
+        // entityWave.addEntity(entities[2], 1);
+        entityWave.addEntity(entities[3], 10);
 
         entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
 
         // initialize player and weapons
-        Weapon weapon = new Weapon("entities/glorp3.png", entityWave, Maps.mainMap, camera, 10, 5, 0.5f, 100.0f);
+        weapons = ResourceLoader.loadWeapons("/data/weapons.txt", entityWave, Maps.mainMap, camera);
 
-        Player player = new Player(window, camera, weapon, Maps.mainMap, this);
+        player = new Player(window, camera, weapons[0], Maps.mainMap, this);
+        maxWeapon = weapons.length;
+        player.setWeapon(weapons[currentWeapon]);
 
         // initialize raycaster & renderer
         Raycaster raycaster = new Raycaster(windowWidth, windowHeight, Maps.mainMap, fov, resolution);
@@ -105,11 +117,17 @@ public class GameInstance {
         if (health <= 0) stop();
     }
 
+    public void changeWeapon() {
+        currentWeapon++;
+        if (currentWeapon > maxWeapon) currentWeapon = 0;
+        player.setWeapon(weapons[currentWeapon]);
+    }
+
     public void renderHud(Window window) {
-        int barWidth = windowWidth / 2;
+        int barWidth = windowWidth - 40;
         int barHeight = 16;
-        int barX = windowWidth / 2 - 20;
-        int barY = windowHeight - 60;
+        int barX = 20;
+        int barY = 60;
 
         HealthBar.render(health, barX, barY, barWidth, barHeight, window);
     }

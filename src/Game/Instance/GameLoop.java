@@ -43,8 +43,6 @@ public class GameLoop {
         int fpsCount = 0;
         running = true;
 
-        ScreenImage testImage = new ScreenImage("entities/glorp3.png", 0, 0, 300, 300);
-
         while (running) {
             long now = System.nanoTime();
 
@@ -62,7 +60,7 @@ public class GameLoop {
 
             // clear window
             window.clear(0x000000);
-            window.addImage(testImage);
+            //window.addImage(testImage);
 
             // move entities
             entityWave.doLogic();

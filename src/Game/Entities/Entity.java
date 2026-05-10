@@ -203,7 +203,7 @@ public class Entity {
     }
 
     public void doDamage(int damage, EntityWave entityWave) {
-        health -= (int) (damage * damageMultiplier);
+        health -= (int) Math.max(1, damage * damageMultiplier);
 
         // entity dead
         if(health <= 0) entityWave.remove(this);

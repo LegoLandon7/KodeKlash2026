@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Weapon {
     private BufferedImage image;
     private final int damage;
-    private final float reloadTime; // milliseconds
+    private final long reloadTime; // milliseconds
     private final float bulletSpeed;
     private final float range;
 
@@ -24,7 +24,7 @@ public class Weapon {
 
     private long cooldown;
 
-    public Weapon(String imagePath, EntityWave entityWave, int[][] map, Camera camera, int damage, float reloadTime, float bulletSpeed, float range) {
+    public Weapon(String imagePath, EntityWave entityWave, int[][] map, Camera camera, int damage, long reloadTime, float bulletSpeed, float range) {
         try {
             this.image = ResourceLoader.loadImage(imagePath);
         } catch (IOException e) {

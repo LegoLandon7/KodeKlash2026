@@ -9,6 +9,7 @@ import Game.User.Camera;
 import Game.Raycasting.*;
 import Game.Output.*;
 import Game.User.Player;
+import Game.Util.HealthBar;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
@@ -66,8 +67,8 @@ public class GameInstance {
         // initialize entities
         Path path = new Path(Maps.map5);
 
-        Entity testEntity2 = new Entity(0, 0, "entities/glorp3.png", path, camera, this, 0.1f, 1f, 0.001f, 25);
-        Entity testEntity = new Entity(0, 0, "entities/glorp3.png", path, camera, this,0.5f, 0.5f, 0.02f, 2);
+        Entity testEntity2 = new Entity(0, 0, "entities/glorp3.png", path, camera, this, 0.25f, 1f, 0.005f, 5);
+        Entity testEntity = new Entity(0, 0, "entities/glorp3.png", path, camera, this,0.75f, 0.5f, 0.02f, 1);
 
         EntityWave entityWave = new EntityWave(Maps.map5, difficulty);
 
@@ -77,7 +78,7 @@ public class GameInstance {
         entityWave.randomize(Maps.map5.length, Maps.map5[0].length);
 
         // initialize player and weapons
-        Weapon weapon = new Weapon("entities/glorp3.png", entityWave, Maps.map5, camera, 2, 0.1f, 0.5f, 100.0f);
+        Weapon weapon = new Weapon("entities/glorp3.png", entityWave, Maps.map5, camera, 5, 5, 0.5f, 100.0f);
 
         Player player = new Player(window, camera, weapon, Maps.map5, this);
 
@@ -103,19 +104,11 @@ public class GameInstance {
     }
 
     public void renderHud(Window window) {
-        int barWidth = windowWidth - 40;
+        int barWidth = windowWidth / 2;
         int barHeight = 16;
-        int barX = 20;
+        int barX = windowWidth / 2 - 20;
         int barY = windowHeight - 60;
 
-        float pct = Math.max(0, health / 100f);
-        int fillWidth = (int)(barWidth * pct);
-
-        for (int x = 0; x < barWidth; x++) {
-            for (int y = 0; y < barHeight; y++) {
-                int color = (x < fillWidth) ? 0xFF22CC22 : 0xFF880000;
-                window.setPixel(barX + x, barY + y, color);
-            }
-        }
+        HealthBar.render(health, barX, barY, barWidth, barHeight, window);
     }
 }

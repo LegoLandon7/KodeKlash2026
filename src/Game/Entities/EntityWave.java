@@ -1,6 +1,7 @@
 package Game.Entities;
 
 import Game.User.Camera;
+import Game.Util.VectorMath;
 
 public class EntityWave {
     private Entity[] entities;
@@ -50,18 +51,36 @@ public class EntityWave {
         for (Entity entity : entities) {
             if (entity == null) continue;
 
-            // get random position and set it
             float randomX = (float) Math.random() * limitX;
             float randomY = (float) Math.random() * limitY;
 
-            // cant be inside tile or close to player
-            while((map[(int) randomX][(int) randomY] > 0)) {
+            while (isBadSpawn(randomX, randomY, entity)) {
                 randomX = (float) Math.random() * limitX;
                 randomY = (float) Math.random() * limitY;
             }
 
             entity.setPos(randomX, randomY);
         }
+    }
+
+    private boolean isBadSpawn(float x, float y, Entity spawn) {
+        // inside wall
+        if (map[(int) x][(int) y] > 0) return true;
+
+        // too close to player
+        float camX = spawn.getCamera().getCamX();
+        float camY = spawn.getCamera().getCamY();
+        if (VectorMath.distance(x, y, camX, camY) < 3f) return true;
+
+        // too close to another entity
+        for (Entity other : entities) {
+            // checks
+            if (other == null) continue;
+            if (other == spawn) continue;
+            if (VectorMath.distance(x, y, other.getPosX(), other.getPosY()) < 1f) return true;
+        }
+
+        return false;
     }
 
     public void sort(float camX, float camY) {
@@ -108,7 +127,7 @@ public class EntityWave {
 
     public void remove(Entity entity) {
         for (int i = 0; i < entities.length; i++) {
-            if (entity == null) continue;
+            if (entities[i] == null) continue;
             if (entities[i] == entity) entities[i] = null;
         }
     }

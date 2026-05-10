@@ -4,6 +4,7 @@ import Game.Entities.Entity;
 import Game.Entities.EntityWave;
 import Game.Instance.GameInstance;
 import Game.Output.Window;
+import Game.Util.HealthBar;
 
 import java.util.ArrayList;
 
@@ -164,33 +165,13 @@ public class Renderer {
 
     private void renderHealthbar(Entity e, RayData[] zBuffer, int screenX, int size, float camZ) {
         if (e.getHealth() == 100) return;
-        // get bar dimensions
+
         int barWidth = size;
         int barHeight = Math.max(2, size / 16);
-
-        // get bar position
         int barX = screenX - barWidth / 2;
         int barY = (height / 2) - (size / 2) - barHeight - 2;
 
-        // get bar width
-        float healthPercent = e.getHealth() / 100.0f;
-        int healthWidth = (int) (barWidth * healthPercent);
-
-        // loop through every pixel
-        for (int x = 0; x < barWidth; x++) {
-            for (int y = 0; y < barHeight; y++) {
-                int sx = barX + x;
-                int sy = barY + y;
-                if (sx < 0 || sx >= width || sy < 0 || sy >= height) continue;
-
-                int rayIdx = sx / res;
-                if (rayIdx < 0 || rayIdx >= zBuffer.length) continue;
-                if (camZ >= zBuffer[rayIdx].getDist()) continue;
-
-                int color = (x < healthWidth) ? 0xFF22CC22 : 0xFF880000;
-                window.setPixel(sx, sy, color);
-            }
-        }
+        HealthBar.render(e.getHealth(), barX, barY, barWidth, barHeight, window, res, zBuffer, camZ);
     }
 
     private int shade(int color, float brightness) {

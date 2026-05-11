@@ -115,7 +115,7 @@ public class Window extends Canvas implements KeyListener {
         // render all HUD images
         for (ScreenImage image : hudImages) {
             if (image == null) continue;
-            g.drawImage(image.getImage(), image.getX(), image.getY(), image.getWidth(), image.getHeight(), null);
+            g.drawImage(image.image(), image.x(), image.y(), image.width(), image.height(), null);
         }
 
         Arrays.fill(hudImages, null);

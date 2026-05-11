@@ -8,6 +8,7 @@ import Game.Instance.GameInstance;
 import Game.User.Camera;
 import Menu.MainMenuApplication;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -22,6 +23,9 @@ import java.util.stream.Collectors;
 public class ResourceLoader {
     public static BufferedImage loadImage(String filePath) throws IOException {
         return ImageIO.read(Objects.requireNonNull(ResourceLoader.class.getClassLoader().getResourceAsStream(filePath)));
+    }
+    public static Image loadIcon(String filePath) throws IOException {
+        return new Image(Objects.requireNonNull(ResourceLoader.class.getResourceAsStream(filePath)));
     }
     public static FXMLLoader loadFXML(String filePath) throws IOException {
         return new FXMLLoader(ResourceLoader.class.getResource(filePath));

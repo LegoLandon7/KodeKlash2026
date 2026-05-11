@@ -1,5 +1,7 @@
 package Game.Output;
 
+import Game.Util.ResourceLoader;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -7,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -55,6 +58,12 @@ public class Window extends Canvas implements KeyListener {
         frame.setVisible(true);
         setFocusable(true);
         requestFocus();
+
+        try {
+            frame.setIconImage(ResourceLoader.loadImage("global/icon.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         createBufferStrategy(2);
         bufferStrategy = getBufferStrategy();

@@ -15,11 +15,6 @@ public class Camera {
         camY = y;
     }
 
-    public Camera() {
-        this.camX = 0;
-        this.camY = 0;
-    }
-
     // forward / back
     public void stepCamera(double step) {
         camX += (float) (dirX * step);

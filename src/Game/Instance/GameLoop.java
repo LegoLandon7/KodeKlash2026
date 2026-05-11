@@ -1,5 +1,6 @@
 package Game.Instance;
 
+import Game.Entities.Entity;
 import Game.Entities.EntityWave;
 import Game.Entities.Path;
 import Game.Gameplay.Weapon;
@@ -15,12 +16,12 @@ import Game.Output.Window;
 import java.awt.image.BufferedImage;
 
 public class GameLoop {
-
     private final Window window;
     private final Camera camera;
     private final Player player;
     private final Renderer renderer;
     private final Raycaster raycaster;
+    private final Entity[] entities;
 
     private final int maxFps;
 
@@ -31,7 +32,8 @@ public class GameLoop {
     public static int weaponScale = 3;
 
     public GameLoop(Window window, Camera camera, Player player,
-                    Renderer renderer, Raycaster raycaster, EntityWave entityWave, int maxFps) {
+                    Renderer renderer, Raycaster raycaster, EntityWave entityWave,
+                    Entity[] entities, int maxFps) {
 
         this.window = window;
         this.camera = camera;
@@ -39,6 +41,7 @@ public class GameLoop {
         this.renderer = renderer;
         this.raycaster = raycaster;
         this.entityWave = entityWave;
+        this.entities = entities;
         this.maxFps = maxFps;
     }
 
@@ -88,6 +91,17 @@ public class GameLoop {
             );
             RayData[] zBuffer = raycaster.cast();
             renderer.render(zBuffer);
+
+            // reset entities
+            if (entityWave.getCount() == 0) {
+                entityWave.reset();
+                entityWave.addEntity(entities[0], 5);
+                entityWave.addEntity(entities[1], 5);
+                entityWave.addEntity(entities[2], 5);
+                entityWave.addEntity(entities[3], 5);
+                entityWave.addEntity(entities[4], 5);
+                entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
+            }
 
             // get frame times
             long targetFrameTime = 1_000_000_000 / maxFps;

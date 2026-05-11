@@ -1,11 +1,10 @@
 package Game.Output;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 // a record is essentially a class but for only storing data
 // this makes it a lot more simple
-public record ScreenImage(Image image, int x, int y, int width, int height) {}
+public record ScreenImage(BufferedImage image, int x, int y, int width, int height) {}
 
 //public class ScreenImage {
 //    private final Image image;

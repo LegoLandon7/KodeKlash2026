@@ -1,6 +1,7 @@
 # structure is String imagePath, float healthMultiplier, float entitySize, float playerSize, float entitySpeed, int damageOut
 
-assets/entities/glorp2.png, 0.5f, 0.4f, 1f, 0.025f, 1
-assets/entities/glorp2.png, 0.2f, 0.8f, 0.3f, 0.005f, 5
-assets/entities/glorp2.png, 1.0f, 0.5f, 50f, 0.02f, 10
-assets/entities/glorp2.png, 8.0f, 0.5f, 0.5f, 0.05f, 3
+assets/entities/brute.png, 0.25f, 0.5f, 1f, 0.025f, 1
+assets/entities/charger.png, 0.25f, 0.5f, 0.3f, 0.005f, 10
+assets/entities/crosser.png, 1.0f, 0.5f, 2.5f, 0.025f, 5
+assets/entities/crawler.png, 8.0f, 0.5f, 0.05f, 0.05f, 3
+assets/entities/tank.png, 0.1f, 1f, 1f, 0.0015f, 5

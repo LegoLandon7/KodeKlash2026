@@ -150,6 +150,10 @@ public class EntityWave {
         }
     }
 
+    public void reset() {
+        entities = new Entity[0];
+    }
+
     // getters
     public Entity[] getEntities() {return entities;}
 

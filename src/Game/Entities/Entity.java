@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/11/26
+// this is the main class for doing entity logic and storing entity data
+
 package Game.Entities;
 
 import Game.Instance.GameInstance;

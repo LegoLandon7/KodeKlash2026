@@ -82,10 +82,10 @@ public class GameInstance {
 
         EntityWave entityWave = new EntityWave(Maps.mainMap, difficulty);
 
-        entityWave.addEntity(entities[0], 3);
-        //entityWave.addEntity(entities[1], 5);
-        // entityWave.addEntity(entities[2], 1);
-        // entityWave.addEntity(entities[3], 10);
+        entityWave.addEntity(entities[2], 3);
+//        entityWave.addEntity(entities[1], 5);
+//        entityWave.addEntity(entities[2], 1);
+//        entityWave.addEntity(entities[3], 10);
 
         entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
 
@@ -102,7 +102,7 @@ public class GameInstance {
         renderer.setEntityWave(entityWave);
 
         // initialize game loop
-        gameLoop = new GameLoop(window, camera, player, renderer, raycaster, entityWave, maxFps);
+        gameLoop = new GameLoop(window, camera, player, renderer, raycaster, entityWave, entities, maxFps);
         Thread gameThread = new Thread(() -> gameLoop.start());
         gameThread.start();
     }

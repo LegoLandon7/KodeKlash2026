@@ -67,7 +67,8 @@ public class ResourceLoader {
 
             // add weapon
             weapons.add(new Weapon(object[0], entityWave, map, camera,
-                    toInt(object[1]), toLong(object[2]), toFloat(object[3]), toFloat(object[4])));
+                    toInt(object[1]), toLong(object[2]), toFloat(object[3]),
+                    toFloat(object[4]), toInt(object[5])));
         }
 
         return weapons.toArray(new Weapon[0]);

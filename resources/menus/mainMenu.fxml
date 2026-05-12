@@ -7,6 +7,8 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
@@ -14,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="720" maxWidth="1280" prefHeight="720" prefWidth="1280" style="-fx-background-color: #A26AC4;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menu.MainMenuController">
-    <Label blendMode="MULTIPLY" cache="true" layoutX="384.0" layoutY="21.0" text="PlaceHolder Title" textAlignment="CENTER">
+    <Label blendMode="MULTIPLY" cache="true" layoutX="405.0" layoutY="28.0" text="Glorp Shooter" textAlignment="CENTER">
         <font>
             <Font name="System Bold Italic" size="73.0" />
         </font>
@@ -241,12 +243,12 @@
          <Cursor fx:constant="HAND" />
       </cursor>
     </Button>
-   <Label layoutX="23.0" layoutY="199.0" prefHeight="96.0" prefWidth="171.0" style="-fx-font-weight: 900;" text="Controls:">
+   <Label layoutX="24.0" layoutY="110.0" prefHeight="96.0" prefWidth="171.0" style="-fx-font-weight: 900;" text="Controls:">
       <font>
          <Font size="40.0" />
       </font>
    </Label>
-   <Label layoutX="25.0" layoutY="272.0" prefHeight="218.0" prefWidth="308.0" text="W / Up Arrow&#9;       - move forwards&#10;S  /  Down Arrow  - move backwards&#10;&#10;A / D - strafe left / right&#10;&#10;Left Arrow / Right Arrow - rotate camera&#10;&#10;SPACE - shoot&#10;Z          - shange weapon&#10;ESC      - close window">
+   <Label layoutX="26.0" layoutY="183.0" prefHeight="218.0" prefWidth="308.0" text="W / Up Arrow&#9;    - move forwards&#10;S  /  Down Arrow  - move backwards&#10;&#10;A / D - strafe left / right&#10;&#10;Left Arrow / Right Arrow - rotate camera&#10;&#10;SPACE - shoot&#10;Z          - change weapon&#10;ESC      - close window">
       <font>
          <Font name="System Bold" size="14.0" />
       </font>
@@ -261,4 +263,34 @@
          <Font name="System Bold" size="14.0" />
       </font>
    </Label>
+   <Label layoutX="24.0" layoutY="386.0" prefHeight="96.0" prefWidth="293.0" style="-fx-font-weight: 900;" text="Gameplay:">
+      <font>
+         <Font size="40.0" />
+      </font>
+   </Label>
+   <Label layoutX="14.0" layoutY="447.0" prefHeight="218.0" prefWidth="479.0" text="- Enemies will come attacking you&#10;     some may have a bigger range than others so be careful&#10;- Press z to switch to the right weapon for the job&#10;     some weapons may have a bigger spread to &#10;     hit many enemies at once&#10;- Enemies will pathfind towards you so always run&#10;- Each time you clear a wave, you will get healed 50%&#10;     also, a new randomized wave will spawn&#10;- Get to the highest possible wave you can!&#10;">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Label>
+   <Label layoutX="921.0" layoutY="296.0" prefHeight="25.0" prefWidth="28.0" text="x1">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Label>
+   <Label layoutX="921.0" layoutY="346.0" prefHeight="25.0" prefWidth="28.0" text="x5">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Label>
+   <Label layoutX="921.0" layoutY="396.0" prefHeight="25.0" prefWidth="28.0" text="x10">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Label>
+   <ImageView fitHeight="113.0" fitWidth="89.0" layoutX="305.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../assets/icons/icon.png" />
+      </image>
+   </ImageView>
 </AnchorPane>

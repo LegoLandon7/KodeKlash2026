@@ -22,7 +22,7 @@ public class MainMenuApplication extends Application {
         FXMLLoader fxmlLoader = ResourceLoader.loadFXML("/menus/mainMenu.fxml");
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setResizable(false);
-        stage.setTitle("Placeholder");
+        stage.setTitle("Glorp Shooter");
         stage.setScene(scene);
         stage.show();
     }

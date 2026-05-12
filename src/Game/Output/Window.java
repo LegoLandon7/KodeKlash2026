@@ -36,10 +36,15 @@ public class Window extends Canvas implements KeyListener {
     private String currentFps = "";
     private final Font font = new Font("Arial", Font.BOLD, 30);
 
+    private int entityCount;
+    private int waveCount;
+
     public Window(String title, int width, int height) {
         this.title = title;
         this.width = width;
         this.height = height;
+        entityCount = 0;
+        waveCount = 1;
 
         // initialize the image data
         mainImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -127,10 +132,25 @@ public class Window extends Canvas implements KeyListener {
         // render fps
         frame.setTitle(title + " - " + currentFps);
 
+        // render text
+        g.setFont(font);
+        g.setColor(Color.LIGHT_GRAY);
+
+        g.drawString("Enemies Left: " +  entityCount, 30, 50);
+        g.drawString("Current Wave: " + waveCount, 30, 80);
+
         g.dispose();
 
         // show finished render
         bufferStrategy.show();
+    }
+
+    public void setEntityCount(int entityCount) {
+        this.entityCount = entityCount;
+    }
+
+    public void setWaveCount(int waveCount) {
+        this.waveCount = waveCount;
     }
 
     public void close() {

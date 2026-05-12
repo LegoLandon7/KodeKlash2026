@@ -49,7 +49,7 @@ public class GameInstance {
 
     // default settings
     public GameInstance() {
-        this.windowTitle =  "Placeholder";
+        this.windowTitle =  "Glorp Shooter";
 
         this.windowWidth = 1280;
         this.windowHeight = 720;
@@ -86,11 +86,7 @@ public class GameInstance {
 
         EntityWave entityWave = new EntityWave(Maps.mainMap, difficulty);
 
-        entityWave.addEntity(entities[2], 3);
-//        entityWave.addEntity(entities[1], 5);
-//        entityWave.addEntity(entities[2], 1);
-//        entityWave.addEntity(entities[3], 10);
-
+        entityWave.reset(entities);
         entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
 
         // initialize player and weapons
@@ -106,7 +102,7 @@ public class GameInstance {
         renderer.setEntityWave(entityWave);
 
         // initialize game loop
-        gameLoop = new GameLoop(window, camera, player, renderer, raycaster, entityWave, entities, maxFps);
+        gameLoop = new GameLoop(window, camera, player, renderer, raycaster, entityWave, entities, maxFps, this);
         Thread gameThread = new Thread(() -> gameLoop.start());
         gameThread.start();
     }
@@ -119,6 +115,12 @@ public class GameInstance {
     public void takeDamage(int damage) {
         health -= damage;
         if (health <= 0) stop();
+    }
+
+    public void changeHealth(int health) {
+        this.health += health;
+        if (health > HealthBar.MAX_HEALTH)
+            this.health = HealthBar.MAX_HEALTH;
     }
 
     public void changeWeapon() {

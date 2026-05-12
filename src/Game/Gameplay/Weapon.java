@@ -12,6 +12,8 @@ import Game.Util.VectorMath;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Weapon {
     private final BufferedImage image;
@@ -19,6 +21,7 @@ public class Weapon {
     private final long reloadTime; // milliseconds
     private final float bulletSpeed;
     private final float range;
+    private final int spread;
 
     private EntityWave entityWave;
     private final int[][] map;
@@ -26,7 +29,7 @@ public class Weapon {
 
     private long cooldown;
 
-    public Weapon(String imagePath, EntityWave entityWave, int[][] map, Camera camera, int damage, long reloadTime, float bulletSpeed, float range) {
+    public Weapon(String imagePath, EntityWave entityWave, int[][] map, Camera camera, int damage, long reloadTime, float bulletSpeed, float range, int spread) {
         try {
             this.image = ResourceLoader.loadImage(imagePath);
         } catch (IOException e) {
@@ -37,6 +40,7 @@ public class Weapon {
         this.reloadTime = reloadTime;
         this.bulletSpeed = bulletSpeed;
         this.range = range;
+        this.spread = spread;
 
         this.entityWave = entityWave;
         this.map = map;
@@ -62,44 +66,70 @@ public class Weapon {
         camDirX /= length;
         camDirY /= length;
 
-        // ray data
-        float rayX = camX;
-        float rayY = camY;
-        boolean hit = false;
+        List<Entity> hitEntities = new ArrayList<>();
 
-        // cast bullet(s)
-        for (int s = 0; s < range; s++) {
-            // current map position
-            int mapX = (int) rayX;
-            int mapY = (int) rayY;
+        float spreadAngle = (float) Math.toRadians(spread); // spread is angle and bullet count
 
-            // checks
-            if (map[mapX][mapY] > 0) break;
+        // each weapon shot is only allowed to hit 1 entity at a time
+        // no entity can be hit twice no matter what bullet shot it
+        // multiple different entities can be hit though
+        // this allows piercing or spreading the shot out
 
-            for (Entity e : entityWave.getEntities()) {
-                if (e == null) continue;
 
-                // get entity data
-                float posX = e.getPosX();
-                float posY = e.getPosY();
+        // loop through spread
+        for (int i = 0; i < spread; i++) {
+            // ray data
+            float rayX = camX;
+            float rayY = camY;
 
-                float dist = VectorMath.distance(rayX, rayY, posX, posY);
+            // reset hit
+            int hitCount = 0;
 
-                // check if bullet hit
-                if (dist < e.getEntitySize()) {
-                    dealDamage(e); // damage entity
+            // calculate bullet angle
+            float angle = (spread == 1) ? 0 : -spreadAngle / 2 + spreadAngle * i / (spread - 1); // left side of angle + current ray / angle
 
-                    hit = true;
-                    break;
+            // rotation matrix
+            float cos = (float) Math.cos(angle);
+            float sin = (float) Math.sin(angle);
+            float dirX = camDirX * cos - camDirY * sin;
+            float dirY = camDirX * sin + camDirY * cos;
+
+            // cast bullet(s)
+            for (int s = 0; s < range; s++) {
+                // current map position
+                int mapX = (int) rayX;
+                int mapY = (int) rayY;
+
+                // checks
+                if (map[mapX][mapY] > 0) break;
+
+                for (Entity e : entityWave.getEntities()) {
+                    if (e == null) continue;
+
+                    // get entity data
+                    float posX = e.getPosX();
+                    float posY = e.getPosY();
+
+                    float dist = VectorMath.distance(rayX, rayY, posX, posY);
+
+                    // check if bullet hit
+                    if (dist < e.getEntitySize()) {
+                        // check if entity can get damaged
+                        if (hitEntities.contains(e)) break;
+                        if (hitCount > 3) break;
+
+                        dealDamage(e); // damage entity
+
+                        // enemy was hit
+                        hitCount++;
+                        hitEntities.add(e);
+                    }
                 }
+
+                // step ray
+                rayX += dirX * bulletSpeed;
+                rayY += dirY * bulletSpeed;
             }
-
-            // checks
-            if (hit) break;
-
-            // step ray
-            rayX += camDirX * bulletSpeed;
-            rayY += camDirY * bulletSpeed;
         }
     }
 

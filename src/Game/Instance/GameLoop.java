@@ -16,6 +16,7 @@ import Game.User.Player;
 import Game.Raycasting.Raycaster;
 import Game.Raycasting.Renderer;
 import Game.Output.Window;
+import Game.Util.HealthBar;
 
 import java.awt.image.BufferedImage;
 
@@ -26,6 +27,7 @@ public class GameLoop {
     private final Renderer renderer;
     private final Raycaster raycaster;
     private final Entity[] entities;
+    private final GameInstance gameInstance;
 
     private final int maxFps;
 
@@ -35,9 +37,11 @@ public class GameLoop {
 
     public static int weaponScale = 3;
 
+    private int waveCount;
+
     public GameLoop(Window window, Camera camera, Player player,
                     Renderer renderer, Raycaster raycaster, EntityWave entityWave,
-                    Entity[] entities, int maxFps) {
+                    Entity[] entities, int maxFps, GameInstance gameInstance) {
 
         this.window = window;
         this.camera = camera;
@@ -47,6 +51,8 @@ public class GameLoop {
         this.entityWave = entityWave;
         this.entities = entities;
         this.maxFps = maxFps;
+        this.gameInstance = gameInstance;
+        waveCount = 1;
     }
 
     public void start() {
@@ -96,16 +102,18 @@ public class GameLoop {
             RayData[] zBuffer = raycaster.cast();
             renderer.render(zBuffer);
 
+
             // reset entities
             if (entityWave.getCount() == 0) {
-                entityWave.reset();
-                entityWave.addEntity(entities[0], 5);
-                entityWave.addEntity(entities[1], 5);
-                entityWave.addEntity(entities[2], 5);
-                entityWave.addEntity(entities[3], 5);
-                entityWave.addEntity(entities[4], 5);
+                entityWave.reset(entities);
                 entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
+
+                waveCount++;
+                gameInstance.changeHealth(HealthBar.MAX_HEALTH / 2);
             }
+
+            window.setEntityCount(entityWave.getCount());
+            window.setWaveCount(waveCount);
 
             // get frame times
             long targetFrameTime = 1_000_000_000 / maxFps;

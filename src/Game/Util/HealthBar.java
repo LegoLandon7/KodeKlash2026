@@ -1,6 +1,6 @@
 // Landon Lego
 // 5/12/26
-// this file is used to render the healthbar on the screen
+// this file is used to render the health-bar on the screen
 
 package Game.Util;
 

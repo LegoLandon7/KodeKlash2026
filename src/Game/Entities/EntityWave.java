@@ -7,6 +7,8 @@ package Game.Entities;
 import Game.User.Camera;
 import Game.Util.VectorMath;
 
+import java.util.Random;
+
 public class EntityWave {
     private Entity[] entities;
     private final int difficulty;
@@ -154,8 +156,21 @@ public class EntityWave {
         }
     }
 
-    public void reset() {
-        entities = new Entity[0];
+    // respawn many entities
+    public void reset(Entity[] entities) {
+        this.entities = new Entity[0];
+
+        // spawn new entities
+        Random rnd = new Random();
+        addEntity(entities[0], rnd.nextInt(5, 10));
+        addEntity(entities[1], rnd.nextInt(3, 7));
+        addEntity(entities[2], rnd.nextInt(2, 5));
+        addEntity(entities[3], rnd.nextInt(1, 3));
+        addEntity(entities[4], rnd.nextInt(1, 2));
+        addEntity(entities[5], rnd.nextInt(1, 2));
+
+        // secret
+        if (rnd.nextInt(100) == 1) addEntity(entities[5], 1);
     }
 
     // getters

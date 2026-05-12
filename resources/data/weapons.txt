@@ -1,6 +1,12 @@
-# structure is String imagePath, int damage, long reloadTime, float bulletSpeed, float range
+# structure is
+# String imagePath
+# int damage
+# long reloadTime
+# float bulletSpeed
+# float range
+# int spread
 
-assets/entities/brute.png, 5, 100, 0.5f, 20.0f
-assets/entities/brute.png, 25, 250, 0.5f, 10.0f
-assets/entities/brute.png, 1, 25, 0.5f, 50.0f
-assets/entities/brute.png, 3, 25, 0.5f, 2.0f
+assets/entities/brute.png, 5, 100, 0.5f, 20.0f, 10
+assets/entities/brute.png, 25, 250, 0.5f, 10.0f, 45
+assets/entities/brute.png, 1, 25, 0.5f, 50.0f, 45
+assets/entities/brute.png, 3, 25, 0.5f, 2.0f, 45

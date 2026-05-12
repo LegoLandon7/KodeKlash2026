@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file stores all the map data, you can change the main map at the bottom
+
 package Game.Map;
 
 public class Maps {

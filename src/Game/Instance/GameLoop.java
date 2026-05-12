@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file is used to iterate over the game each frame
+
 package Game.Instance;
 
 import Game.Entities.Entity;

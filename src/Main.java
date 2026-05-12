@@ -1,4 +1,7 @@
-import Game.Instance.*;
+// Landon Lego
+// 5/12/26
+// main entry point
+
 import Menu.*;
 
 public class Main {

@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// This file is used to control the camera positioning
+
 package Game.User;
 
 public class Camera {
@@ -8,7 +12,7 @@ public class Camera {
     private float dirY = 0;
 
     public final static float stepSize = 0.125f;
-    public final static float rotSize = 0.05f;
+    public final static float rotSize = 0.04f;
 
     public Camera(float x, float y) {
         camX = x;

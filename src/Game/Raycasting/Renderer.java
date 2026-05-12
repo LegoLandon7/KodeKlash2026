@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file is used to render the background, walls, and enemies
+
 package Game.Raycasting;
 
 import Game.Entities.Entity;

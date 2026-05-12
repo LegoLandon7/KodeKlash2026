@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file stores ray-hit data for each ray
+
 package Game.Raycasting;
 
 public class RayData {

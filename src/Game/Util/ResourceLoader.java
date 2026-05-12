@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file is used to load resources from the resource folder
+
 package Game.Util;
 
 import Game.Entities.Entity;

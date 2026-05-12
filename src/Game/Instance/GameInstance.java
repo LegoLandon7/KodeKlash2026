@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file starts the game with certain settings
+
 package Game.Instance;
 
 import Game.Entities.Entity;
@@ -124,10 +128,10 @@ public class GameInstance {
     }
 
     public void renderHud(Window window) {
-        int barWidth = windowWidth - 40;
+        int barWidth = windowWidth / 3 - 40;
         int barHeight = 16;
         int barX = 20;
-        int barY = 60;
+        int barY = windowHeight - 24;
 
         HealthBar.render(health, barX, barY, barWidth, barHeight, window);
     }

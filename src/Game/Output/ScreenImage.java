@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file stores data used for HUD images on the window
+
 package Game.Output;
 
 import java.awt.image.BufferedImage;

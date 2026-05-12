@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// main entry point
+
 package Menu;
 
 import Game.Util.ResourceLoader;

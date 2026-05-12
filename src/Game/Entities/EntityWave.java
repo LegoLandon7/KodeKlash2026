@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this is the class used for spawning many enemies and keeping track of them
+
 package Game.Entities;
 
 import Game.User.Camera;

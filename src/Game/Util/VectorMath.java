@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file is used to simplify commonly used equations for math
+
 package Game.Util;
 
 public class VectorMath {

@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file is used to do player input and control everything
+
 package Game.User;
 
 import Game.Gameplay.Weapon;

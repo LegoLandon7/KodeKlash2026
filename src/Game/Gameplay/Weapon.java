@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// class used for dealing damage and storing weapon data
+
 package Game.Gameplay;
 
 import Game.Entities.Entity;
@@ -6,13 +10,11 @@ import Game.User.Camera;
 import Game.Util.ResourceLoader;
 import Game.Util.VectorMath;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Weapon {
-    private BufferedImage image;
+    private final BufferedImage image;
     private final int damage;
     private final long reloadTime; // milliseconds
     private final float bulletSpeed;

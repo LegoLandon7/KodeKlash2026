@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file renders a window to the screen and allows the raycaster render the 3d scene
+
 package Game.Output;
 
 import Game.Util.ResourceLoader;

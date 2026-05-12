@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// this file is used for entities to path-find towards the player
+
 package Game.Entities;
 
 import javax.swing.*;

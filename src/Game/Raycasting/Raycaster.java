@@ -1,6 +1,8 @@
-package Game.Raycasting;
+// Landon Lego
+// 5/12/26
+// this file is the main math used for raycasting a 3d scene
 
-import java.util.Arrays;
+package Game.Raycasting;
 
 public class Raycaster {
 
@@ -13,7 +15,7 @@ public class Raycaster {
     private float dirX, dirY;
     private float planeX, planeY;
 
-    private RayData[] zBuffer;
+    private final RayData[] zBuffer;
 
     public static final float MAX_DIST = 100f;
 

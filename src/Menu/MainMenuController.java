@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// used to control difficulty
+
 package Menu;
 
 import Game.Instance.GameInstance;

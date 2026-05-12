@@ -4,6 +4,7 @@
 
 package Game.Entities;
 
+import Game.Instance.GameLoop;
 import Game.User.Camera;
 import Game.Util.VectorMath;
 
@@ -14,9 +15,12 @@ public class EntityWave {
     private final int difficulty;
     private final int[][] map;
 
-    public EntityWave(int[][] map, int difficulty) {
+    private final GameLoop gameLoop;
+
+    public EntityWave(int[][] map, int difficulty, GameLoop gameLoop) {
         this.difficulty = difficulty;
         this.map = map;
+        this.gameLoop = gameLoop;
     }
 
     public void addEntity(Entity entity, int count) {
@@ -61,19 +65,53 @@ public class EntityWave {
             float randomX = (float) Math.random() * limitX;
             float randomY = (float) Math.random() * limitY;
 
+            int attempts = 0;
+
             while (isBadSpawn(randomX, randomY, entity)) {
                 randomX = (float) Math.random() * limitX;
                 randomY = (float) Math.random() * limitY;
+
+                attempts++;
+                if (attempts > 1000) { // if its tries 1000 times to get a good spawn give up
+                    while(inTile(randomX, randomY,  entity)) {
+                        randomX = (float) Math.random() * limitX;
+                        randomY = (float) Math.random() * limitY;
+                    }
+
+                    entity.setPos(randomX, randomY);
+                    break;
+                }
             }
 
             entity.setPos(randomX, randomY);
         }
     }
 
-    private boolean isBadSpawn(float x, float y, Entity spawn) {
-        // checks
+    private boolean inTile(float x, float y, Entity entity) {
+        // inside tile
         if ((int) x < 0 || (int) x >= map.length || (int) y < 0 || (int) y >= map[0].length) return true;
         if (map[(int) x][(int) y] > 0) return true;
+
+        // check each corner
+        float size = entity.getEntitySize();
+        float[] offsets = {-size, size};
+
+        for (float dx : offsets) {
+            for (float dy : offsets) {
+                int tx = (int)(x + dx);
+                int ty = (int)(y + dy);
+
+                if (tx < 0 || ty < 0 || tx >= map.length || ty >= map[0].length) return true;
+                if (map[tx][ty] > 0) return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isBadSpawn(float x, float y, Entity spawn) {
+        // inside wall
+        if(inTile(x, y, spawn)) return true;
 
         // too close to player
         float camX = spawn.getCamera().getCamX();
@@ -162,15 +200,20 @@ public class EntityWave {
 
         // spawn new entities
         Random rnd = new Random();
-        addEntity(entities[0], rnd.nextInt(5, 10));
-        addEntity(entities[1], rnd.nextInt(3, 7));
-        addEntity(entities[2], rnd.nextInt(2, 5));
-        addEntity(entities[3], rnd.nextInt(1, 3));
-        addEntity(entities[4], rnd.nextInt(1, 2));
-        addEntity(entities[5], rnd.nextInt(1, 2));
+
+        int wave;
+        if (gameLoop == null) wave = 1;
+        else wave = gameLoop.getWaveCount();
+
+        addEntity(entities[0], rnd.nextInt(wave * 2, wave * 2 + 10));
+        addEntity(entities[1], rnd.nextInt(wave * 2, wave * 2 + 3));
+        addEntity(entities[2], rnd.nextInt(wave * 2, wave * 2 + 5));
+        addEntity(entities[3], rnd.nextInt(wave * 2, wave * 2 + 8));
+        addEntity(entities[4], rnd.nextInt(wave * 2, wave * 2 + 7));
+        addEntity(entities[5], rnd.nextInt(wave * 2, wave * 2 + 6));
 
         // secret
-        if (rnd.nextInt(100) == 1) addEntity(entities[5], 1);
+        if (rnd.nextInt(15) == 1) addEntity(entities[6], 2);
     }
 
     // getters

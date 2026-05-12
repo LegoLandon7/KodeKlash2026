@@ -4,6 +4,7 @@
 
 package Game.Instance;
 
+import Game.Audio.SFX;
 import Game.Entities.Entity;
 import Game.Entities.EntityWave;
 import Game.Entities.Path;
@@ -110,6 +111,7 @@ public class GameLoop {
 
                 waveCount++;
                 gameInstance.changeHealth(HealthBar.MAX_HEALTH / 2);
+                SFX.playSound("sfx/ding.wav");
             }
 
             window.setEntityCount(entityWave.getCount());
@@ -134,6 +136,9 @@ public class GameLoop {
         // stop program
         window.close();
     }
+
+    // getters
+    public int getWaveCount() {return waveCount;}
 
     public void stop() {
         running = false;

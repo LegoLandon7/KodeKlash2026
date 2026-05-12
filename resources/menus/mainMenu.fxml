@@ -268,7 +268,7 @@
          <Font size="40.0" />
       </font>
    </Label>
-   <Label layoutX="14.0" layoutY="447.0" prefHeight="218.0" prefWidth="479.0" text="- Enemies will come attacking you&#10;     some may have a bigger range than others so be careful&#10;- Press z to switch to the right weapon for the job&#10;     some weapons may have a bigger spread to &#10;     hit many enemies at once&#10;- Enemies will pathfind towards you so always run&#10;- Each time you clear a wave, you will get healed 50%&#10;     also, a new randomized wave will spawn&#10;- Get to the highest possible wave you can!&#10;">
+   <Label layoutX="21.0" layoutY="461.0" prefHeight="218.0" prefWidth="591.0" text="- Enemies will come attacking you&#10;     some may have a bigger range than others so be careful&#10;- Press z to switch to the right weapon for the job&#10;     some weapons may have a bigger spread to &#10;     hit many enemies at once&#10;- Enemies will pathfind towards you so always run&#10;- Each time you clear a wave, you will get healed 50%&#10;     also, a new randomized wave will spawn&#10;- Get to the highest possible wave you can! Only the enemies get stronger...&#10;&#10;- If you want fun, the overpowered weapon can deal 300 damage in a 360 degree radius&#10;">
       <font>
          <Font name="System Bold" size="14.0" />
       </font>

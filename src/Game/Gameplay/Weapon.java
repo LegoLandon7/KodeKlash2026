@@ -4,6 +4,7 @@
 
 package Game.Gameplay;
 
+import Game.Audio.SFX;
 import Game.Entities.Entity;
 import Game.Entities.EntityWave;
 import Game.User.Camera;
@@ -22,6 +23,7 @@ public class Weapon {
     private final float bulletSpeed;
     private final float range;
     private final int spread;
+    private final String soundPath;
 
     private EntityWave entityWave;
     private final int[][] map;
@@ -29,7 +31,7 @@ public class Weapon {
 
     private long cooldown;
 
-    public Weapon(String imagePath, EntityWave entityWave, int[][] map, Camera camera, int damage, long reloadTime, float bulletSpeed, float range, int spread) {
+    public Weapon(String imagePath, EntityWave entityWave, int[][] map, Camera camera, int damage, long reloadTime, float bulletSpeed, float range, int spread, String soundPath) {
         try {
             this.image = ResourceLoader.loadImage(imagePath);
         } catch (IOException e) {
@@ -41,6 +43,7 @@ public class Weapon {
         this.bulletSpeed = bulletSpeed;
         this.range = range;
         this.spread = spread;
+        this.soundPath = soundPath;
 
         this.entityWave = entityWave;
         this.map = map;
@@ -54,6 +57,8 @@ public class Weapon {
         long now = System.currentTimeMillis();
         if (now - cooldown < reloadTime) return;
         cooldown = now;
+
+        SFX.playSound(soundPath);
 
         // get camera data
         float camX = camera.getCamX();

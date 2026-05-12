@@ -4,6 +4,7 @@
 
 package Menu;
 
+import Game.Audio.SFX;
 import Game.Instance.GameInstance;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -27,6 +28,7 @@ public class MainMenuController {
     // start game button
     @FXML void startGame(){
         Stage stage = (Stage) btnEasy.getScene().getWindow();
+        SFX.playSound("sfx/ding.wav");
 
         // calculate difficulty
         int difficulty = 0;

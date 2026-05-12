@@ -84,7 +84,7 @@ public class GameInstance {
 
         entities = ResourceLoader.loadEntities("/data/entities.txt", path, camera, this);
 
-        EntityWave entityWave = new EntityWave(Maps.mainMap, difficulty);
+        EntityWave entityWave = new EntityWave(Maps.mainMap, difficulty, gameLoop);
 
         entityWave.reset(entities);
         entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
@@ -119,7 +119,7 @@ public class GameInstance {
 
     public void changeHealth(int health) {
         this.health += health;
-        if (health > HealthBar.MAX_HEALTH)
+        if (this.health > HealthBar.MAX_HEALTH)
             this.health = HealthBar.MAX_HEALTH;
     }
 

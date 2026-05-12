@@ -121,12 +121,14 @@ public class Entity {
         int tileX = (int)Math.floor(newX);
         int tileY = (int)Math.floor(y);
 
-        if(path.getMap()[tileX][tileY] > 0) blockX = true;
+        if(tileX < 0 || tileY < 0 || tileX >= path.getMap().length || tileY >= path.getMap()[0].length) blockX = true;
+        else if(path.getMap()[tileX][tileY] > 0) blockX = true;
 
-        tileX = (int)Math.floor(x);
-        tileY = (int)Math.floor(newY);
+        int tileX2 = (int)Math.floor(x);
+        int tileY2 = (int)Math.floor(newY);
 
-        if(path.getMap()[tileX][tileY] > 0) blockY = true;
+        if(tileX2 < 0 || tileY2 < 0 || tileX2 >= path.getMap().length || tileY2 >= path.getMap()[0].length) blockY = true;
+        else if(path.getMap()[tileX2][tileY2] > 0) blockY = true;
 
         // apply movement
         if(!blockX) x = newX;

@@ -4,6 +4,7 @@
 
 package Game.Util;
 
+import Game.Audio.SFX;
 import Game.Entities.Entity;
 import Game.Entities.EntityWave;
 import Game.Entities.Path;
@@ -38,6 +39,9 @@ public class ResourceLoader {
         BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(ResourceLoader.class.getResourceAsStream(filePath))));
         return reader.lines().collect(Collectors.toList());
     }
+    public static File getFile(String filePath) {
+        return new File(Objects.requireNonNull(SFX.class.getClassLoader().getResource(filePath)).getFile());
+    }
     public static Entity[] loadEntities(String filePath, Path path, Camera camera, GameInstance gameInstance) {
         List<String> lines = readFile(filePath);
         List<Entity> entities = new ArrayList<>();
@@ -68,7 +72,7 @@ public class ResourceLoader {
             // add weapon
             weapons.add(new Weapon(object[0], entityWave, map, camera,
                     toInt(object[1]), toLong(object[2]), toFloat(object[3]),
-                    toFloat(object[4]), toInt(object[5])));
+                    toFloat(object[4]), toInt(object[5]), object[6]));
         }
 
         return weapons.toArray(new Weapon[0]);

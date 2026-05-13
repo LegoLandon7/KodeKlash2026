@@ -26,7 +26,7 @@ public class MainMenuController {
     // start game button
     @FXML void startGame(){
         Stage stage = (Stage) btnEasy.getScene().getWindow();
-        SFX.playSound("assets/sfx/ding.wav");
+        SFX.playSound("/assets/sfx/ding.wav");
 
         // calculate difficulty
         int difficulty = 0;
@@ -43,7 +43,7 @@ public class MainMenuController {
         stage.hide();
 
         // change music
-        SFX.loopSound("assets/sfx/gameplay-music.wav");
+        SFX.loopSound("/assets/sfx/gameplay-music.wav");
     }
 
     // initialize
@@ -66,7 +66,7 @@ public class MainMenuController {
         });
 
         // audio
-        SFX.loopSound("assets/sfx/mainmenu-music.wav");
+        SFX.loopSound("/assets/sfx/mainmenu-music.wav");
     }
 
     // other buttons

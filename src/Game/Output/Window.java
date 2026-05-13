@@ -69,7 +69,7 @@ public class Window extends Canvas implements KeyListener {
         requestFocus();
 
         try {
-            frame.setIconImage(ResourceLoader.loadImage("assets/icons/icon.png"));
+            frame.setIconImage(ResourceLoader.loadImage("/assets/icons/icon.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

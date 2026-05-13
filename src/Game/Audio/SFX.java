@@ -8,6 +8,8 @@ import Game.Util.ResourceLoader;
 
 import javax.sound.sampled.*;
 import java.io.File;
+import java.net.URL;
+import java.util.Objects;
 
 public class SFX {
     private static Clip loopClip;
@@ -15,8 +17,8 @@ public class SFX {
     private static Clip getClip(String filePath) {
         try {
             // get audio data
-            File file = ResourceLoader.getFile(filePath);
-            AudioInputStream stream = AudioSystem.getAudioInputStream(file);
+            URL url = ResourceLoader.getResourceUrl(filePath);
+            AudioInputStream stream = AudioSystem.getAudioInputStream(url);
             AudioFormat format = stream.getFormat();
             DataLine.Info info =  new DataLine.Info(Clip.class, format);
             Clip clip = (Clip) AudioSystem.getLine(info);
@@ -26,12 +28,14 @@ public class SFX {
 
             // clean audio
             clip.addLineListener(e -> {
-                if (e.getType() == LineEvent.Type.STOP) clip.close();
+                if (e.getType() == LineEvent.Type.STOP && clip.getMicrosecondPosition() >= clip.getMicrosecondLength())
+                    clip.close();
             });
 
             return clip;
 
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

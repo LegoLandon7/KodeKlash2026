@@ -101,7 +101,6 @@ public class GameLoop {
             RayData[] zBuffer = raycaster.cast();
             renderer.render(zBuffer);
 
-
             // reset entities
             if (entityWave.getCount() == 0) {
                 entityWave.reset(entities);
@@ -109,7 +108,7 @@ public class GameLoop {
 
                 waveCount++;
                 gameInstance.changeHealth(HealthBar.MAX_HEALTH / 2);
-                SFX.playSound("assets/sfx/ding.wav");
+                SFX.playSound("/assets/sfx/ding.wav");
             }
 
             window.setEntityCount(entityWave.getCount());
@@ -133,7 +132,7 @@ public class GameLoop {
 
         // stop program
         window.close();
-        SFX.loopSound("assets/sfx/mainmenu-music.wav");
+        SFX.loopSound("/assets/sfx/mainmenu-music.wav");
     }
 
     // getters

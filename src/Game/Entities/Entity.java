@@ -80,12 +80,14 @@ public class Entity {
         float dx = tx - x;
         float dy = ty - y;
 
-        float dist = (float)Math.sqrt(dx * dx + dy * dy);
-        if (dist < 0.01f) return; // already there
+        // normalize
+        float length = VectorMath.length(dx, dy);
+        float nx = dx / length;
+        float ny = dy / length;
 
         // new position to walk to
-        float newX = x + dx / dist * step * delta;
-        float newY = y + dy / dist * step * delta;
+        float newX = x + nx * step * delta;
+        float newY = y + ny * step * delta;
 
         boolean blockX = false;
         boolean blockY = false;

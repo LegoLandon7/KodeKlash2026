@@ -1,5 +1,5 @@
 // Landon Lego
-// 5/12/26
+// 5/13/26
 // this file is used to load resources from the resource folder
 
 package Game.Util;
@@ -16,8 +16,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -27,21 +31,25 @@ import java.util.stream.Collectors;
 
 public class ResourceLoader {
     public static BufferedImage loadImage(String filePath) throws IOException {
-        return ImageIO.read(Objects.requireNonNull(ResourceLoader.class.getClassLoader().getResourceAsStream(filePath)));
+        return ImageIO.read(getResourceUrl(filePath));
     }
     public static Image loadIcon(String filePath) throws IOException {
-        return new Image(Objects.requireNonNull(ResourceLoader.class.getResourceAsStream(filePath)));
+        return new Image(getResourceUrl(filePath).toExternalForm());
     }
+
     public static FXMLLoader loadFXML(String filePath) throws IOException {
-        return new FXMLLoader(ResourceLoader.class.getResource(filePath));
+        return new FXMLLoader(getResourceUrl(filePath));
     }
+
     public static List<String> readFile(String filePath) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(ResourceLoader.class.getResourceAsStream(filePath))));
         return reader.lines().collect(Collectors.toList());
     }
-    public static File getFile(String filePath) {
-        return new File(Objects.requireNonNull(SFX.class.getClassLoader().getResource(filePath)).getFile());
+
+    public static URL getResourceUrl(String filePath) {
+        return ResourceLoader.class.getResource(filePath);
     }
+
     public static Entity[] loadEntities(String filePath, Path path, Camera camera, GameInstance gameInstance) {
         List<String> lines = readFile(filePath);
         List<Entity> entities = new ArrayList<>();
@@ -70,9 +78,9 @@ public class ResourceLoader {
             if (object == null) continue;
 
             // add weapon
-            weapons.add(new Weapon(object[0], entityWave, map, camera,
-                    toInt(object[1]), toLong(object[2]), toFloat(object[3]),
-                    toFloat(object[4]), toInt(object[5]), object[6]));
+            weapons.add(new Weapon(object[0], object[1], object[2],
+                    toInt(object[3]), toLong(object[4]), toFloat(object[5]),
+                    toFloat(object[6]), toInt(object[7]), entityWave, map, camera));
         }
 
         return weapons.toArray(new Weapon[0]);

@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Weapon {
-    private final BufferedImage image;
+    private BufferedImage image;
+    private final BufferedImage initImage;
+    private final BufferedImage shootImage;
     private final int damage;
     private final long reloadTime; // milliseconds
     private final float bulletSpeed;
@@ -31,9 +33,11 @@ public class Weapon {
 
     private long cooldown;
 
-    public Weapon(String imagePath, EntityWave entityWave, int[][] map, Camera camera, int damage, long reloadTime, float bulletSpeed, float range, int spread, String soundPath) {
+    public Weapon(String imagePath, String shootImagePath, String soundPath, int damage, long reloadTime, float bulletSpeed, float range, int spread, EntityWave entityWave, int[][] map, Camera camera) {
         try {
             this.image = ResourceLoader.loadImage(imagePath);
+            this.shootImage = ResourceLoader.loadImage(shootImagePath);
+            initImage = this.image;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -59,6 +63,7 @@ public class Weapon {
         cooldown = now;
 
         SFX.playSound(soundPath);
+        changeImage();
 
         // get camera data
         float camX = camera.getCamX();
@@ -79,7 +84,6 @@ public class Weapon {
         // no entity can be hit twice no matter what bullet shot it
         // multiple different entities can be hit though
         // this allows piercing or spreading the shot out
-
 
         // loop through spread
         for (int i = 0; i < spread; i++) {
@@ -138,13 +142,25 @@ public class Weapon {
         }
     }
 
+    private void changeImage() {
+        this.image = shootImage;
+        Thread waitThread = new Thread(() -> {
+            try { // wait in thread so it doesn't interrupt the main thread
+                Thread.sleep(100);
+                this.image = initImage;
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        waitThread.start();
+    }
+
     private void dealDamage(Entity e) {
         e.doDamage(damage, entityWave);
     }
 
-    // setters
-    public void setEntityWave(EntityWave entityWave) {this.entityWave = entityWave;}
-
     // getters
-    public BufferedImage getImage() {return image;}
+    public BufferedImage getImage() {
+        return image;
+    }
 }

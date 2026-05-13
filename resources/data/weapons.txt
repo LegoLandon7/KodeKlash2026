@@ -1,3 +1,6 @@
+# Landon Lego & Simon
+# This file is used to store data about every weapon
+
 # structure is
 # String imagePath
 # int damage
@@ -12,4 +15,4 @@ assets/entities/brute.png, 1, 25, 0.5f, 50.0f, 45, assets/sfx/pistol.wav
 assets/entities/brute.png, 3, 25, 0.5f, 2.0f, 45, assets/sfx/shotgun.wav
 assets/entities/glorp.png, 300, 10, 1f, 100.0f, 360, assets/sfx/laser.wav
 
-# these aren't balanced yet, also they do need a second shooting image as well
+# note: these aren't balanced yet, also they do need a second shooting image as well

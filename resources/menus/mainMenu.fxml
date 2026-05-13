@@ -278,12 +278,12 @@
          <Font name="System Bold" size="14.0" />
       </font>
    </Label>
-   <Label layoutX="921.0" layoutY="346.0" prefHeight="25.0" prefWidth="28.0" text="x5">
+   <Label layoutX="921.0" layoutY="346.0" prefHeight="25.0" prefWidth="28.0" text="x2">
       <font>
          <Font name="System Bold" size="14.0" />
       </font>
    </Label>
-   <Label layoutX="921.0" layoutY="396.0" prefHeight="25.0" prefWidth="28.0" text="x10">
+   <Label layoutX="921.0" layoutY="396.0" prefHeight="25.0" prefWidth="28.0" text="x3">
       <font>
          <Font name="System Bold" size="14.0" />
       </font>

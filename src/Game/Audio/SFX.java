@@ -1,3 +1,7 @@
+// Landon Lego
+// 5/12/26
+// This sfx class can be used to play looped music or sound effects
+
 package Game.Audio;
 
 import Game.Util.ResourceLoader;

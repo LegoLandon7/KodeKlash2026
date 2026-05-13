@@ -1,3 +1,6 @@
+# Landon Lego & Simon
+# this file is used for storing data about every entity
+
 # structure is
 # String imagePath
 # float healthMultiplier

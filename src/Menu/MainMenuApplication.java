@@ -1,4 +1,4 @@
-// Landon Lego
+// Landon Lego & Simon
 // 5/12/26
 // main entry point
 

@@ -1,4 +1,4 @@
-// Landon Lego
+// Landon Lego & Simon
 // 5/12/26
 // used to control difficulty
 
@@ -31,8 +31,8 @@ public class MainMenuController {
         // calculate difficulty
         int difficulty = 0;
         if (difficultyGroup.getSelectedToggle() == btnEasy) difficulty = 1;
-        if (difficultyGroup.getSelectedToggle() == btnMed)  difficulty = 5;
-        if (difficultyGroup.getSelectedToggle() == btnHard) difficulty = 10;
+        if (difficultyGroup.getSelectedToggle() == btnMed)  difficulty = 2;
+        if (difficultyGroup.getSelectedToggle() == btnHard) difficulty = 3;
 
         // start game
         gameInstance.setStage(stage);

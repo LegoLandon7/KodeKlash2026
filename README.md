@@ -14,10 +14,14 @@ This README file has sources I made or referenced in this project. Comments heav
 \
 **Simon worked on:** entity art, main menu art, main menu
 
-# Detailed Summary
+There is a details.txt that Landon made that explains everything in the project simply
 
 Sources used:
 
+https://www.youtube.com/playlist?list=PLy4zsTUHwGJKolO9Ko_j6IStFIJnTYBul -> where I first learned raycasting
+\
+https://en.wikipedia.org/wiki/Rotation_matrix
+\
 https://lodev.org/cgtutor/raycasting.html
 \
 https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/

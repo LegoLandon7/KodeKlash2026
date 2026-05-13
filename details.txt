@@ -1,5 +1,7 @@
 HOW OUR PROJECT WORKS - Landon Lego | last updated 5/12/26
 
+- open in notepad to read easier
+
 Raycasting is a technique where an individual point "casts" rays along its field of view, to map out its surrounding structures, these structures in this game are simple tiles, either 1 for being a wall or 0 being a floor.
 
 Each ray is cast from the player, starting from the left side of the field of view, and since my game is grid-based then I can move the ray along the grid lines instead of by a fixed step, making the edges look straighter (because sometimes rays could go inside a tile) and making the game run faster.

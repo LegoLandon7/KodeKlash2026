@@ -10,8 +10,12 @@ Note: some AI was used mainly with Google AI overview showing obvious bugs, logi
 Landon worked on:** ray-casting, rendering, entities, player input
 Simon worked on:** entity art, main menu art, main menu
 
+There is a details.txt that Landon made that explains everything in the project simply
+
 Sources used:
 
+https://www.youtube.com/playlist?list=PLy4zsTUHwGJKolO9Ko_j6IStFIJnTYBul -> where I first learned raycasting
+https://en.wikipedia.org/wiki/Rotation_matrix
 https://lodev.org/cgtutor/raycasting.html
 https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
 https://en.wikipedia.org/wiki/Breadth-first_search

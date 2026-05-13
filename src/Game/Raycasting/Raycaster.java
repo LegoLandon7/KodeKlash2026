@@ -17,7 +17,7 @@ public class Raycaster {
 
     private final RayData[] zBuffer;
 
-    public static final float MAX_DIST = 100f;
+    public static final float MAX_DIST = 50f;
 
     public Raycaster(int width, int height, int[][] map, float fov, int res) {
         this.width = width;

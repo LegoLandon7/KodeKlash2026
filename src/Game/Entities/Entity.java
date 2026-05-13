@@ -118,12 +118,15 @@ public class Entity {
         if (distY < playerDistance) blockY = true;
 
         // check wall collision
+
+        // check x side first
         int tileX = (int)Math.floor(newX);
         int tileY = (int)Math.floor(y);
 
         if(tileX < 0 || tileY < 0 || tileX >= path.getMap().length || tileY >= path.getMap()[0].length) blockX = true;
         else if(path.getMap()[tileX][tileY] > 0) blockX = true;
 
+        // then check y side
         int tileX2 = (int)Math.floor(x);
         int tileY2 = (int)Math.floor(newY);
 

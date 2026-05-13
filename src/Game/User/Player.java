@@ -6,10 +6,7 @@ package Game.User;
 
 import Game.Gameplay.Weapon;
 import Game.Instance.GameInstance;
-import Game.Instance.GameLoop;
 import Game.Output.Window;
-import javafx.application.Platform;
-import javafx.stage.Stage;
 
 import java.awt.event.KeyEvent;
 import java.util.Set;
@@ -24,7 +21,7 @@ public class Player {
 
     private boolean weaponChanged;
 
-    public static final float playerSize = 0.1f;
+    public static final float PLAYER_SIZE = 0.1f;
 
     public Player(Window window, Camera camera, Weapon weapon, int[][] map, GameInstance gameInstance) {
         this.window = window;
@@ -102,7 +99,7 @@ public class Player {
 
     private boolean isInsideTile() {
         // each corner
-        float[] o = {-playerSize, playerSize};
+        float[] o = {-PLAYER_SIZE, PLAYER_SIZE};
 
         // check all 4 corners
         for (float dx : o) {

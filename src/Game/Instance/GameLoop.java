@@ -34,7 +34,7 @@ public class GameLoop {
 
     private boolean running = false;
 
-    public static int weaponScale = 3;
+    public static int WEAPON_SCALE = 3;
 
     private int waveCount;
 
@@ -79,8 +79,8 @@ public class GameLoop {
 
             // draw weapon
             BufferedImage weaponImage = player.getWeapon().getImage();
-            int scaledWidth  = weaponImage.getWidth()  * weaponScale;
-            int scaledHeight = weaponImage.getHeight() * weaponScale;
+            int scaledWidth  = weaponImage.getWidth()  * WEAPON_SCALE;
+            int scaledHeight = weaponImage.getHeight() * WEAPON_SCALE;
 
             ScreenImage image = new ScreenImage(weaponImage,
                     window.getWidth() / 2 - scaledWidth  / 2,

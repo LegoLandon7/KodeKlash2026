@@ -101,6 +101,7 @@ public class EntityWave {
                 int tx = (int)(x + dx);
                 int ty = (int)(y + dy);
 
+                // checks
                 if (tx < 0 || ty < 0 || tx >= map.length || ty >= map[0].length) return true;
                 if (map[tx][ty] > 0) return true;
             }

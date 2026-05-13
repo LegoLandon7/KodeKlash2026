@@ -7,9 +7,7 @@ package Menu;
 import Game.Audio.SFX;
 import Game.Instance.GameInstance;
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
@@ -28,7 +26,7 @@ public class MainMenuController {
     // start game button
     @FXML void startGame(){
         Stage stage = (Stage) btnEasy.getScene().getWindow();
-        SFX.playSound("sfx/ding.wav");
+        SFX.playSound("assets/sfx/ding.wav");
 
         // calculate difficulty
         int difficulty = 0;
@@ -43,6 +41,9 @@ public class MainMenuController {
 
         // hide current window
         stage.hide();
+
+        // change music
+        SFX.loopSound("assets/sfx/gameplay-music.wav");
     }
 
     // initialize
@@ -63,6 +64,9 @@ public class MainMenuController {
                 if (event.getCode() == KeyCode.ENTER) startGame();
             });
         });
+
+        // audio
+        SFX.loopSound("assets/sfx/mainmenu-music.wav");
     }
 
     // other buttons

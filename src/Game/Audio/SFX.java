@@ -1,15 +1,14 @@
 package Game.Audio;
 
-import Game.Gameplay.Weapon;
 import Game.Util.ResourceLoader;
 
 import javax.sound.sampled.*;
 import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
 
 public class SFX {
-    public static void playSound(String filePath) {
+    private static Clip loopClip;
+
+    private static Clip getClip(String filePath) {
         try {
             // get audio data
             File file = ResourceLoader.getFile(filePath);
@@ -20,10 +19,47 @@ public class SFX {
 
             // play audio
             clip.open(stream);
-            clip.start();
+
+            // clean audio
+            clip.addLineListener(e -> {
+                if (e.getType() == LineEvent.Type.STOP) clip.close();
+            });
+
+            return clip;
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return null;
         }
+    }
+
+    private static void setVolume(Clip clip, float volume) {
+        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        float min = volumeControl.getMinimum();
+        float max = volumeControl.getMaximum();
+        volumeControl.setValue(min + (max - min) * volume);
+    }
+
+    public static void playSound(String filePath) {
+        Clip clip = getClip(filePath);
+        if (clip == null) return;
+
+        setVolume(clip, 0.85f);
+        clip.start();
+    }
+
+    public static void loopSound(String filePath) {
+        stopLoop();
+        loopClip = getClip(filePath);
+        if (loopClip == null) return;
+
+        setVolume(loopClip, 0.8f);
+        loopClip.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+
+    public static void stopLoop() {
+        if (loopClip == null) return;
+        loopClip.stop();
+        loopClip.close();
+        loopClip = null;
     }
 }

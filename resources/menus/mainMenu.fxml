@@ -253,12 +253,12 @@
          <Font name="System Bold" size="14.0" />
       </font>
    </Label>
-   <Label layoutX="25.0" layoutY="14.0" prefHeight="96.0" prefWidth="171.0" style="-fx-font-weight: 900;" text="Credits:">
+   <Label layoutX="21.0" layoutY="1.0" prefHeight="96.0" prefWidth="171.0" style="-fx-font-weight: 900;" text="Credits:">
       <font>
          <Font size="40.0" />
       </font>
    </Label>
-   <Label layoutX="25.0" prefHeight="218.0" prefWidth="308.0" text="Landon - core game / math&#10;Simon   - art, main menu, creativity">
+   <Label layoutX="26.0" layoutY="-6.0" prefHeight="218.0" prefWidth="308.0" text="Landon - core game / math&#10;Simon   - art, main menu, creativity&#10;Bentely - some music / sfx">
       <font>
          <Font name="System Bold" size="14.0" />
       </font>

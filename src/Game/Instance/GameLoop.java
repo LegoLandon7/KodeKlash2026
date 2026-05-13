@@ -7,8 +7,6 @@ package Game.Instance;
 import Game.Audio.SFX;
 import Game.Entities.Entity;
 import Game.Entities.EntityWave;
-import Game.Entities.Path;
-import Game.Gameplay.Weapon;
 import Game.Map.Maps;
 import Game.Output.ScreenImage;
 import Game.Raycasting.RayData;
@@ -111,7 +109,7 @@ public class GameLoop {
 
                 waveCount++;
                 gameInstance.changeHealth(HealthBar.MAX_HEALTH / 2);
-                SFX.playSound("sfx/ding.wav");
+                SFX.playSound("assets/sfx/ding.wav");
             }
 
             window.setEntityCount(entityWave.getCount());
@@ -135,6 +133,7 @@ public class GameLoop {
 
         // stop program
         window.close();
+        SFX.loopSound("assets/sfx/mainmenu-music.wav");
     }
 
     // getters

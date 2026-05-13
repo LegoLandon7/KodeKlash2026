@@ -6,8 +6,8 @@
 # float range
 # int spread
 
-assets/entities/brute.png, 5, 100, 0.5f, 20.0f, 10, sfx/shotgun.wav
-assets/entities/brute.png, 25, 250, 0.5f, 10.0f, 45, sfx/pistol.wav
-assets/entities/brute.png, 1, 25, 0.5f, 50.0f, 45, sfx/pistol.wav
-assets/entities/brute.png, 3, 25, 0.5f, 2.0f, 45, sfx/shotgun.wav
-assets/entities/glorp.png, 300, 10, 1f, 100.0f, 360, sfx/pistol.wav
+assets/entities/brute.png, 5, 100, 0.5f, 20.0f, 10, assets/sfx/shotgun.wav
+assets/entities/brute.png, 25, 250, 0.5f, 10.0f, 45, assets/sfx/pistol.wav
+assets/entities/brute.png, 1, 25, 0.5f, 50.0f, 45, assets/sfx/pistol.wav
+assets/entities/brute.png, 3, 25, 0.5f, 2.0f, 45, assets/sfx/shotgun.wav
+assets/entities/glorp.png, 300, 10, 1f, 100.0f, 360, assets/sfx/laser.wav

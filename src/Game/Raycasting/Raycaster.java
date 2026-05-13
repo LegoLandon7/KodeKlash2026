@@ -55,9 +55,11 @@ public class Raycaster {
         // loop through every ray
         for (int i = 0; i < zBuffer.length; i++) {
 
+            // maps ray index to be between -1 and 1
             float cameraX = 2f * i / (float)(zBuffer.length - 1) - 1f;
 
-            // initialize the starting ray position
+            // initialize the starting ray direction
+            // calculated from plane, ray index, and camera direction
             float rayX = dirX + planeX * cameraX;
             float rayY = dirY + planeY * cameraX;
 
@@ -65,7 +67,8 @@ public class Raycaster {
             int mapX = (int) posX;
             int mapY = (int) posY;
 
-            // distance ray will travel every step
+            // distance ray will travel to each gridline
+            // if the ray is perfectly vertical or horizontal then it will never move the perpendicular way
             float deltaX = rayX == 0 ? 1e30f : Math.abs(1f / rayX);
             float deltaY = rayY == 0 ? 1e30f : Math.abs(1f / rayY);
 
@@ -73,7 +76,7 @@ public class Raycaster {
             int stepX = rayX < 0 ? -1 : 1;
             int stepY = rayY < 0 ? -1 : 1;
 
-            // get initial distance needed to step to get to the first grid line
+            // get distance needed to step to closest gridline (x or y) at the start
             float sideX = rayX < 0
                     ? (posX - mapX) * deltaX
                     : (mapX + 1f - posX) * deltaX;

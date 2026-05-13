@@ -15,12 +15,9 @@ public class EntityWave {
     private final int difficulty;
     private final int[][] map;
 
-    private final GameLoop gameLoop;
-
-    public EntityWave(int[][] map, int difficulty, GameLoop gameLoop) {
+    public EntityWave(int[][] map, int difficulty) {
         this.difficulty = difficulty;
         this.map = map;
-        this.gameLoop = gameLoop;
     }
 
     public void addEntity(Entity entity, int count) {
@@ -196,7 +193,7 @@ public class EntityWave {
     }
 
     // respawn many entities
-    public void reset(Entity[] entities) {
+    public void reset(Entity[] entities, GameLoop gameLoop) {
         this.entities = new Entity[0];
 
         // spawn new entities
@@ -206,12 +203,12 @@ public class EntityWave {
         if (gameLoop == null) wave = 1;
         else wave = gameLoop.getWaveCount();
 
-        addEntity(entities[0], rnd.nextInt(wave * 2, wave * 2 + 10));
-        addEntity(entities[1], rnd.nextInt(wave * 2, wave * 2 + 3));
-        addEntity(entities[2], rnd.nextInt(wave * 2, wave * 2 + 5));
-        addEntity(entities[3], rnd.nextInt(wave * 2, wave * 2 + 8));
-        addEntity(entities[4], rnd.nextInt(wave * 2, wave * 2 + 7));
-        addEntity(entities[5], rnd.nextInt(wave * 2, wave * 2 + 6));
+        addEntity(entities[0], rnd.nextInt(1, wave * 2 + 10));
+        addEntity(entities[1], rnd.nextInt(1, wave * 2 + 3));
+        addEntity(entities[2], rnd.nextInt(1, wave * 2 + 5));
+        addEntity(entities[3], rnd.nextInt(1, wave * 2 + 8));
+        addEntity(entities[4], rnd.nextInt(1, wave * 2 + 7));
+        addEntity(entities[5], rnd.nextInt(1, wave * 2 + 6));
 
         // secret
         if (rnd.nextInt(15) == 1) addEntity(entities[6], 2);

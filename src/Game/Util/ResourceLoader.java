@@ -4,52 +4,50 @@
 
 package Game.Util;
 
-import Game.Audio.SFX;
 import Game.Entities.Entity;
 import Game.Entities.EntityWave;
 import Game.Entities.Path;
 import Game.Gameplay.Weapon;
 import Game.Instance.GameInstance;
 import Game.User.Camera;
-import Menu.MainMenuApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ResourceLoader {
+    // load images
     public static BufferedImage loadImage(String filePath) throws IOException {
-        return ImageIO.read(getResourceUrl(filePath));
+        return ImageIO.read(getUrl(filePath));
     }
     public static Image loadIcon(String filePath) throws IOException {
-        return new Image(getResourceUrl(filePath).toExternalForm());
+        return new Image(getUrl(filePath).toExternalForm());
     }
 
+    // load fxml
     public static FXMLLoader loadFXML(String filePath) throws IOException {
-        return new FXMLLoader(getResourceUrl(filePath));
+        return new FXMLLoader(getUrl(filePath));
     }
 
+    // read as a list
     public static List<String> readFile(String filePath) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(ResourceLoader.class.getResourceAsStream(filePath))));
         return reader.lines().collect(Collectors.toList());
     }
 
-    public static URL getResourceUrl(String filePath) {
+    // main url getter, to get from resources
+    public static URL getUrl(String filePath) {
         return ResourceLoader.class.getResource(filePath);
     }
 
+    // load data
     public static Entity[] loadEntities(String filePath, Path path, Camera camera, GameInstance gameInstance) {
         List<String> lines = readFile(filePath);
         List<Entity> entities = new ArrayList<>();

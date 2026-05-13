@@ -84,9 +84,9 @@ public class GameInstance {
 
         entities = ResourceLoader.loadEntities("/data/entities.txt", path, camera, this);
 
-        EntityWave entityWave = new EntityWave(Maps.mainMap, difficulty, gameLoop);
+        EntityWave entityWave = new EntityWave(Maps.mainMap, difficulty);
 
-        entityWave.reset(entities);
+        entityWave.reset(entities, gameLoop);
         entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
 
         // initialize player and weapons

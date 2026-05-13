@@ -2,7 +2,13 @@
 
 ### By Simon and Landon
 
+more details in details.txt
+
 ##### this project is made public on [GitHub](https://github.com/LegoLandon7/KodeKlash2026)
+
+If the project doesn't work try openjdk-26, and language level 25
+\
+You can also try running the jar file or bat file as well, it should be compiled already
 
 ---
 

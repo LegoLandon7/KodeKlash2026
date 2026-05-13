@@ -103,7 +103,7 @@ public class GameLoop {
 
             // reset entities
             if (entityWave.getCount() == 0) {
-                entityWave.reset(entities);
+                entityWave.reset(entities, this);
                 entityWave.randomize(Maps.mainMap.length, Maps.mainMap[0].length);
 
                 waveCount++;

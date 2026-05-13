@@ -2,13 +2,18 @@ By Simon and Landon
 
 - open in notepad for best view
 
+more details in details.txt
+
 this project is made public at https://github.com/LegoLandon7/KodeKlash2026
+
+If the project doesn't work try openjdk-26, and language level 25
+You can also try running the jar file or bat file as well, it should be compiled already
 
 This README file has sources I made or referenced in this project. Comments heavily explain everything else in the project.
 Note: some AI was used mainly with Google AI overview showing obvious bugs, logic, or simple tasks. No code here is directly from AI, and it was only used as a tool.
 
-Landon worked on:** ray-casting, rendering, entities, player input
-Simon worked on:** entity art, main menu art, main menu
+Landon worked on: ray-casting, rendering, entities, player input
+Simon worked on: entity art, main menu art, main menu
 
 There is a details.txt that Landon made that explains everything in the project simply
 

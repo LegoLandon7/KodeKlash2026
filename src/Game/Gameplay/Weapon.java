@@ -110,7 +110,9 @@ public class Weapon {
                 int mapY = (int) rayY;
 
                 // checks
-                if (map[mapX][mapY] > 0) break;
+                if (mapX < 0 || mapX >= map.length) break;
+                if (mapY < 0 || mapY >= map[0].length) break;
+                //if (map[mapX][mapY] > 0) break;
 
                 for (Entity e : entityWave.getEntities()) {
                     if (e == null) continue;

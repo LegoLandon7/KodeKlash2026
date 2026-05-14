@@ -15,5 +15,3 @@
 /assets/weapons/shotgun.png, /assets/weapons/shotgun.png, /assets/sfx/shotgun.wav, 7, 50, 0.5f, 5.0f, 30,
 /assets/weapons/fist.png, /assets/weapons/fist.png, /assets/sfx/punch.wav, 3, 750, 0.5f, 2.0f, 15
 /assets/weapons/op1.png, /assets/weapons/op2.png, /assets/sfx/laser.wav, 20, 500, 1f, 30.0f, 45
-
-# note: these aren't balanced yet, also they do need a second shooting image as well

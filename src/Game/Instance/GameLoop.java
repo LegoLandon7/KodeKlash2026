@@ -34,7 +34,7 @@ public class GameLoop {
 
     private boolean running = false;
 
-    public static int WEAPON_SCALE = 3;
+    public static int WEAPON_SCALE = 16;
 
     private int waveCount;
 

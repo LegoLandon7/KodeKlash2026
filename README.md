@@ -2,6 +2,8 @@
 
 ### By Simon and Landon
 
+details in details.txt
+
 ##### this project is made public on [GitHub](https://github.com/LegoLandon7/KodeKlash2026)
 
 ---

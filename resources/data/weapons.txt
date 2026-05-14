@@ -11,10 +11,9 @@
 # float range
 # int spread
 
-/assets/entities/brute.png, /assets/entities/glorp.png, /assets/sfx/shotgun.wav, 5, 100, 0.5f, 20.0f, 10,
-/assets/entities/brute.png, /assets/entities/brute.png, /assets/sfx/shotgun.wav, 25, 250, 0.5f, 10.0f, 45
-/assets/entities/brute.png, /assets/entities/brute.png, /assets/sfx/shotgun.wav, 1, 25, 0.5f, 50.0f, 45
-/assets/entities/brute.png, /assets/entities/brute.png, /assets/sfx/shotgun.wav, 3, 25, 0.5f, 2.0f, 45
-/assets/entities/brute.png, /assets/entities/brute.png, /assets/sfx/laser.wav, 300, 10, 1f, 100.0f, 360
+/assets/weapons/pistol1.png, /assets/weapons/pistol2.png, /assets/sfx/punch.wav, 5, 100, 0.5f, 20.0f, 10,
+/assets/weapons/shotgun.png, /assets/weapons/shotgun.png, /assets/sfx/shotgun.wav, 7, 50, 0.5f, 5.0f, 30,
+/assets/weapons/fist.png, /assets/weapons/fist.png, /assets/sfx/punch.wav, 3, 750, 0.5f, 2.0f, 15
+/assets/weapons/op1.png, /assets/weapons/op2.png, /assets/sfx/laser.wav, 20, 500, 1f, 30.0f, 45
 
 # note: these aren't balanced yet, also they do need a second shooting image as well

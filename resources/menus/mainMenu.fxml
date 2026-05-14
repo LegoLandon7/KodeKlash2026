@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="720" maxWidth="1280" prefHeight="720" prefWidth="1280" style="-fx-background-color: #A26AC4;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menu.MainMenuController">
+<AnchorPane maxHeight="720" maxWidth="1280" prefHeight="720" prefWidth="1280" style="-fx-background-color: #A26AC4;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menu.MainMenuController">
     <Label blendMode="MULTIPLY" cache="true" layoutX="405.0" layoutY="28.0" text="Glorp Shooter" textAlignment="CENTER">
         <font>
             <Font name="System Bold Italic" size="73.0" />
@@ -268,7 +268,7 @@
          <Font size="40.0" />
       </font>
    </Label>
-   <Label layoutX="21.0" layoutY="461.0" prefHeight="218.0" prefWidth="591.0" text="- Enemies will come attacking you&#10;     some may have a bigger range than others so be careful&#10;- Press z to switch to the right weapon for the job&#10;     some weapons may have a bigger spread to &#10;     hit many enemies at once&#10;- Enemies will pathfind towards you so always run&#10;- Each time you clear a wave, you will get healed 50%&#10;     also, a new randomized wave will spawn&#10;- Get to the highest possible wave you can! Only the enemies get stronger...&#10;&#10;- If you want fun, the overpowered weapon can deal 300 damage in a 360 degree radius&#10;">
+   <Label layoutX="21.0" layoutY="461.0" prefHeight="218.0" prefWidth="591.0" text="- Enemies will come attacking you&#10;     some may have a bigger range than others so be careful&#10;- Press z to switch to the right weapon for the job&#10;     some weapons may have a bigger spread to &#10;     hit many enemies at once&#10;- Enemies will pathfind towards you so always run&#10;- Each time you clear a wave, you will get healed 50%&#10;     also, a new randomized wave will spawn&#10;- Get to the highest possible wave you can! Only the enemies get stronger...&#10;">
       <font>
          <Font name="System Bold" size="14.0" />
       </font>

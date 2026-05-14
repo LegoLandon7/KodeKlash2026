@@ -2,6 +2,8 @@ By Simon and Landon
 
 - open in notepad for best view
 
+details in details.txt
+
 this project is made public at https://github.com/LegoLandon7/KodeKlash2026
 
 This README file has sources I made or referenced in this project. Comments heavily explain everything else in the project.
